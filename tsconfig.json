@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist",
+    "paths": {
+      "@store/*": ["01_app/store/*"],
+      "@components/*": ["01_app/components/*"],
+      "@pages/*": ["02_pages/*"],
+      "@widgets/*": ["03_widgets/*"],
+      "@features/*": ["04_features/*"],
+      "@shared/*": ["06_shared/*"],
+      "@icons/*": ["06_shared/icons/*"],
+      "@hooks/*": ["06_shared/hooks/*"]
+    },
+    "module": "ES2022",
+    "target": "ES2022",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strict": true
+  },
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "esm": true,
+    "compilerOptions": {
+      "module": "CommonJS",
+      "moduleResolution": "NodeNext"
+    }
+  }
+}

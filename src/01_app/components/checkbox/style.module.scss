@@ -1,0 +1,44 @@
+@use "@typography" as typography;
+
+.wrapper {
+  display: flex;
+  gap: 12px;
+
+  align-items: center;
+  @include typography.title-m-regular;
+}
+
+.input {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background: var(--main-secondary);
+  border-radius: 8px;
+  position: relative;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  &:checked {
+    background: var(--button-color-orange);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 14px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    top: 40%;
+    left: 52%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &:checked::after {
+    opacity: 1;
+  }
+}

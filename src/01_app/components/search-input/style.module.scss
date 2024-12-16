@@ -1,0 +1,34 @@
+@use "@typography" as typography;
+
+.searchWrapper {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  height: 50px;
+  padding: 20px 30px 20px 45px;
+  border: unset;
+  border-radius: 16px;
+  background: var(--main-secondary);
+
+  &NotActive {
+    color: var(--text-color-grey);
+  }
+
+  @include typography.title-m-regular;
+}
+
+.icon {
+  position: absolute;
+  top: 17px;
+  left: 20px;
+
+  &Active {
+    path {
+      fill: var(--text-color-black);
+    }
+  }
+}

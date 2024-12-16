@@ -1,0 +1,41 @@
+@use "@media" as media;
+
+.modalWrapper {
+  position: fixed;
+  pointer-events: auto;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  width: 100vw;
+  max-height: 100vh;
+  min-height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: scale-up 0.2s ease-out;
+
+  @include media.mobile {
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+}
+
+.inner {
+  height: 100%;
+  max-width: 450px;
+  width: 100%;
+  max-width: 450px;
+  z-index: 99999;
+  padding: 80px 0;
+
+  @include media.mobile {
+    padding: 0;
+    max-width: 100%;
+    max-height: 90vh;
+  }
+
+  animation: scale-up 0.2s ease-out;
+}

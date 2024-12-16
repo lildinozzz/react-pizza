@@ -1,0 +1,83 @@
+@use "@typography" as typography;
+@use "@media" as media;
+@use "@mixins" as mixins;
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  width: 100%;
+  border-bottom: 1px solid var(--outline-color-grey);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--main-primary);
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  &Meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &Info {
+      flex-shrink: 0;
+      margin-right: 50px;
+
+      div {
+        @include typography.title-h2;
+      }
+    }
+
+    &Image {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  &Actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    button {
+      @include mixins.commonTransition;
+      will-change: transform;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    &First {
+      height: 50px;
+      width: 110px;
+      color: var(--button-color-orange);
+      @include typography.title-m-regular;
+    }
+  }
+
+  p {
+    @include typography.title-m-regular;
+    color: var(--text-color-grey);
+  }
+}
+
+@include media.mobile {
+  .wrapper {
+    justify-content: space-between;
+
+    &Meta {
+      gap: 15px;
+    }
+
+    &Actions {
+      button {
+        height: 38px;
+        width: 38px;
+      }
+    }
+  }
+}

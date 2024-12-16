@@ -1,0 +1,38 @@
+@use "@typography" as typography;
+
+.wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  @include typography.title-m-regular;
+}
+
+.input {
+  width: 24px;
+  height: 24px;
+  appearance: none;
+  border-radius: 50%;
+  border: 3px solid var(--main-secondary);
+  position: relative;
+  background-color: white;
+
+  &:checked {
+    background-color: var(--button-color-orange);
+    border: 2px solid var(--button-color-orange);
+
+    &::after {
+      content: "";
+      top: 4.5px;
+      left: 4.5px;
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: white;
+      border-radius: 50%;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

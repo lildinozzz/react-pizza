@@ -1,0 +1,23 @@
+@use "@media" as media;
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  width: calc(3 * 315px + 2 * 40px);
+  margin: 0 auto;
+}
+
+.wrapperCard {
+  flex: 1 1 285px;
+  width: 285px;
+  height: 430px;
+  margin-right: 20px;
+  background: blue;
+}
+
+@include media.mobile {
+  .wrapper {
+    margin-right: 20px;
+  }
+}

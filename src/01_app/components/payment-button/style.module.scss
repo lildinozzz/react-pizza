@@ -1,0 +1,21 @@
+@use "@typography" as typography;
+
+.button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 55px;
+  border-radius: 18px;
+  background: var(--button-color-orange);
+  color: var(--main-primary);
+  border: 1px solid var(--button-color-orange);
+  @include typography.title-l-regular;
+}
+
+.icon {
+  position: relative;
+  top: 3px;
+  left: 15px;
+}

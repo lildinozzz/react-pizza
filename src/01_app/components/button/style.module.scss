@@ -1,0 +1,16 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  border-radius: 16px;
+  border: 1px solid var(--button-color-grey);
+
+  &Primary {
+    border: 1px solid var(--button-color-orange);
+  }
+}
