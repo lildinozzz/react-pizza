@@ -5,16 +5,16 @@ import { CheckboxRadio } from "@components/checkbox-radio";
 import { Button } from "@components/button";
 import { useEffect, useState } from "react";
 import cn from "classnames";
-import { useSelector } from "react-redux";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
 import { commonFilterSelectors } from "@store/reducers/common-filter/selectors";
 import { setPizzas } from "@store/reducers/common-filter/dispatchers";
 import { TCategory } from "@shared/types/types";
 import { getPizzasByCategory } from "@app/service/product";
+import { useAppSelector } from "@app/store/hooks";
 
 export const SideFilters = () => {
-  const { isMobile } = useSelector(commonUISelectors.commonUIInfo);
-  const { categories } = useSelector(commonFilterSelectors.commonFilter);
+  const { isMobile } = useAppSelector(commonUISelectors.commonUIInfo);
+  const { categories } = useAppSelector(commonFilterSelectors.commonFilter);
   const [selectedValue, setSelectedValue] = useState<string>("traditional");
   const [currentTab, setCurrentTab] = useState<number | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);

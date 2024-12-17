@@ -1,10 +1,10 @@
 import { TPizza } from "@shared/types/types";
 import s from "./style.module.scss";
-import { useSelector } from "react-redux";
 import { commonFilterSelectors } from "@store/reducers/common-filter/selectors";
+import { useAppSelector } from "@app/store/hooks";
 
 export const MainContent = () => {
-  const { pizzas } = useSelector(commonFilterSelectors.commonFilter);
+  const { pizzas } = useAppSelector(commonFilterSelectors.commonFilter);
 
   return (
     <div className={s.wrapper}>

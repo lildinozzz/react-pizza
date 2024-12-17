@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import s from "./style.module.scss";
 import cn from "classnames";
-import { useSelector } from "react-redux";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
 import { commonFilterSelectors } from "@store/reducers/common-filter/selectors";
 import { setPizzas } from "@store/reducers/common-filter/dispatchers";
 import { getPizzasByCategory } from "@app/service/product";
 import { TCategory } from "@shared/types/types";
+import { useAppSelector } from "@app/store/hooks";
 
 export const Header = () => {
-  const { isMobile } = useSelector(commonUISelectors.commonUIInfo);
-  const { categories } = useSelector(commonFilterSelectors.commonFilter);
+  const { isMobile } = useAppSelector(commonUISelectors.commonUIInfo);
+  const { categories } = useAppSelector(commonFilterSelectors.commonFilter);
   const [currentTab, setCurrentTab] = useState<number | undefined>(undefined);
 
   useEffect(() => {

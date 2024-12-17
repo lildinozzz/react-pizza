@@ -1,14 +1,14 @@
 import { setIsSidebarOpen } from "@store/reducers/common-ui/dispatchers";
 import s from "./style.module.scss";
-import { useSelector } from "react-redux";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
 import cn from "classnames";
 import { MouseEvent } from "react";
 import { PaymentButton } from "@components/payment-button";
 import { CloseIcon, RightArrowIcon } from "@icons/index";
+import { useAppSelector } from "@app/store/hooks";
 
 export const Sidebar = () => {
-  const { isSidebarOpen } = useSelector(commonUISelectors.commonUIInfo);
+  const { isSidebarOpen } = useAppSelector(commonUISelectors.commonUIInfo);
   const handleClickOutside = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       setIsSidebarOpen(false);

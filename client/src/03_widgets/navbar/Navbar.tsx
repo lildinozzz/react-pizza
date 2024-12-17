@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import s from "./style.module.scss";
 import PizzaImage from "/images/navbar-pizza-image.png";
-import { useSelector } from "react-redux";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
 import { Button, SearchInput } from "@components/index";
 import { UserIcon, CartIcon } from "@icons/index";
 import { setIsSidebarOpen } from "@store/reducers/common-ui/dispatchers";
 import { useAuthModal } from "@features/auth/components/index";
+import { useAppSelector } from "@app/store/hooks";
 
 export const Navbar = () => {
-  const { isMobile } = useSelector(commonUISelectors.commonUIInfo);
+  const { isMobile } = useAppSelector(commonUISelectors.commonUIInfo);
   const [authModal] = useAuthModal();
 
   const handleStartAuth = () => {
