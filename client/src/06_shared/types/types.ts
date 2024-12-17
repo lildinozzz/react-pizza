@@ -1,4 +1,5 @@
 import { PayloadAction as PA } from "@reduxjs/toolkit";
+import { TAuthState, TUserFromBackend } from "./auth/auth";
 
 export type TCategory = {
   id: number;
@@ -20,6 +21,7 @@ export type TPizza = {
 export type TStore = {
   commonUI: TCommonUIInitialState;
   commonFilter: TCommonFilterInitialState;
+  userInfo: TAuthState;
 };
 
 export type TCommonUIInitialState = {
@@ -30,6 +32,10 @@ export type TCommonUIInitialState = {
 export type TCommonFilterInitialState = {
   categories: TCategory[];
   pizzas: TPizza[];
+};
+
+export type TUserInfoState = {
+  user: TUserFromBackend;
 };
 
 export type TSetCategoriesPA = PA<TCommonFilterInitialState["categories"]>;
