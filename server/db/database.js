@@ -1,22 +1,24 @@
-require("dotenv").config();
+require('dotenv').config();
 
-module.exports = {
+const databaseConfig = {
   development: {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: "postgres",
-    seederStorage: "sequelize",
-    seederStorageTableName: "SequelizeData",
+    dialect: 'postgres',
+    seederStorage: 'sequelize',
+    seederStorageTableName: 'SequelizeData',
   },
   production: {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
-    dialect: "postgres",
-    seederStorage: "sequelize",
-    seederStorageTableName: "SequelizeData",
+    dialect: 'postgres',
+    seederStorage: 'sequelize',
+    seederStorageTableName: 'SequelizeData',
   },
 };
+
+module.exports = databaseConfig;

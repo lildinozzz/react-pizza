@@ -3,15 +3,13 @@ import s from "./style.module.scss";
 import { Button } from "@components/button";
 import { Input } from "@app/components/input";
 import { CloseIcon } from "@shared/icons";
-import { useAppDispatch } from "@app/store/hooks";
 import { useState } from "react";
-import { loginThunk } from "@app/store/slices/auth/authThunks";
-import { TAuthForm } from "@shared/types/auth/auth";
+import { useAppDispatch } from "@app/store/hooks";
+import { authenticateThunk } from "@app/store/reducers/user-info/reducers";
 
 const AuthModal = ({ onClose }: TModalProps) => {
   const dispatch = useAppDispatch();
-
-  const [values, setValue] = useState<TAuthForm>({
+  const [values, setValue] = useState({
     email: "",
     password: "",
   });
@@ -27,7 +25,7 @@ const AuthModal = ({ onClose }: TModalProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(loginThunk(values));
+    await dispatch(authenticateThunk(values));
   };
 
   return (
