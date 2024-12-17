@@ -7,6 +7,7 @@ export const buildResolvers = () => {
         __dirname,
         "../../src/01_app/scss/typography.scss"
       ),
+      "@app": resolve(__dirname, "../../src/01_app"),
       "@media": resolve(__dirname, "../../src/01_app/scss/media.scss"),
       "@mixins": resolve(__dirname, "../../src/01_app/scss/mixins.scss"),
       "@store": resolve(__dirname, "../../src/01_app/store"),

@@ -1,6 +1,7 @@
 import {
   TCommonFilterInitialState,
   TSetCategoriesPA,
+  TSetPizzasPA,
 } from "../../../../06_shared/types/types";
 
 export const setCategories = (
@@ -8,4 +9,11 @@ export const setCategories = (
   action: TSetCategoriesPA
 ) => {
   state.categories = action.payload;
+};
+
+export const setPizzas = (
+  state: TCommonFilterInitialState,
+  action: TSetPizzasPA
+) => {
+  state.pizzas = action.payload;
 };
