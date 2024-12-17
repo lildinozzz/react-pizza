@@ -3,22 +3,39 @@ import s from "./style.module.scss";
 import { NumberInput } from "@components/number-input";
 import { CheckboxRadio } from "@components/checkbox-radio";
 import { Button } from "@components/button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import cn from "classnames";
 import { useSelector } from "react-redux";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
 import { commonFilterSelectors } from "@store/reducers/common-filter/selectors";
+import { setPizzas } from "@store/reducers/common-filter/dispatchers";
+import { TCategory } from "@shared/types/types";
+import { getPizzasByCategory } from "@app/service/product";
 
 export const SideFilters = () => {
   const { isMobile } = useSelector(commonUISelectors.commonUIInfo);
   const { categories } = useSelector(commonFilterSelectors.commonFilter);
   const [selectedValue, setSelectedValue] = useState<string>("traditional");
-  const [currentTab, setCurrentTab] = useState(categories[0]);
+  const [currentTab, setCurrentTab] = useState<number | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSetCurrentTab = (index: number) => {
-    setCurrentTab(categories[index]);
+  useEffect(() => {
+    if (categories?.length > 0 && currentTab === undefined) {
+      setCurrentTab(categories[0].id);
+    }
+  }, [categories, currentTab]);
+
+  const handleSetCurrentTab = async (categoryId: TCategory["id"]) => {
+    try {
+      const pizzas = await getPizzasByCategory(categoryId);
+
+      setCurrentTab(categoryId);
+      setPizzas(pizzas);
+    } catch (error) {
+      console.error("Ошибка при установке таба", error);
+    }
   };
+
   const handleRadioChange = (value: string) => {
     setSelectedValue(value);
   };
@@ -59,8 +76,8 @@ export const SideFilters = () => {
           <NumberInput min={0} max={1000} placeholder="0" defaultValue={0} />
           <NumberInput
             min={100}
-            max={1000}
-            defaultValue={1000}
+            max={2000}
+            defaultValue={2000}
             placeholder="1000"
           />
         </div>
@@ -74,14 +91,15 @@ export const SideFilters = () => {
             <div className={s.titleLarge}>Категория</div>
 
             <div className={s.wrapperFilters}>
-              {categories?.map((cat, i) => (
+              {categories?.map((cat) => (
                 <button
+                  key={cat.id}
                   className={cn(s.button, {
-                    [s.buttonActive]: currentTab?.name === cat?.name,
+                    [s.buttonActive]: currentTab === cat.id,
                   })}
-                  onClick={() => handleSetCurrentTab(i)}
+                  onClick={() => handleSetCurrentTab(cat.id)}
                 >
-                  {cat?.name}
+                  {cat.name}
                 </button>
               ))}
             </div>

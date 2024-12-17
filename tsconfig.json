@@ -3,6 +3,7 @@
     "baseUrl": "src",
     "outDir": "dist",
     "paths": {
+      "@app/*": ["01_app/*"],
       "@store/*": ["01_app/store/*"],
       "@components/*": ["01_app/components/*"],
       "@pages/*": ["02_pages/*"],
