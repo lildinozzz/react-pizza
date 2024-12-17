@@ -6,17 +6,16 @@ type TButtonProps = {
   text?: string;
   renderLoader?: boolean;
   startAnimation?: boolean;
-  className?: string;
   icon?: React.ReactNode;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   theme?: "primary" | "secondary";
-};
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = ({
   text,
   className,
   renderLoader,
   icon,
+  disabled,
   theme = "primary",
   onClick,
 }: TButtonProps) => {
@@ -24,6 +23,7 @@ export const Button = ({
 
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
       className={cn(s.button, className, {
         [s.buttonPrimary]: isPrimaryTheme,

@@ -1,9 +1,11 @@
-import { configureStore, EnhancedStore } from "@reduxjs/toolkit";
-
-import { TStore } from "../../06_shared/types/types";
+import { configureStore } from "@reduxjs/toolkit";
 import { reducer } from "./reducers";
 
-export const store: EnhancedStore<TStore> = configureStore({
+export const store = configureStore({
   reducer,
   devTools: true,
 });
+
+export type StoreT = typeof store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
