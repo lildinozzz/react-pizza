@@ -1,3 +1,10 @@
 @mixin commonTransition {
   transition: 0.3s;
 }
+
+@mixin checkboxesWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}

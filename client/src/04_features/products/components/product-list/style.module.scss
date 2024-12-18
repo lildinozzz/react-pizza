@@ -1,0 +1,18 @@
+@use "@media" as media;
+
+.wrapper {
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  gap: 14px;
+
+  @include media.tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media.mobile {
+    grid-template-columns: 1fr;
+    padding-right: 30px;
+  }
+}

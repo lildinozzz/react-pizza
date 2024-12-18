@@ -1,7 +1,7 @@
-import { TCategory, TPizza } from "@shared/types/types";
+import { TCategory, TProduct } from "@shared/types/types";
 import { pizzas } from "../../../../server/pizzas";
 
-export const getAllPizzas = (): TPizza[] => {
+export const getAllPizzas = (): TProduct[] => {
   try {
     return pizzas;
   } catch (error) {
@@ -10,9 +10,9 @@ export const getAllPizzas = (): TPizza[] => {
   }
 };
 
-export const getPizzasByCategory = async (
+export const geTProductsByCategory = async (
   categoryId: TCategory["id"]
-): Promise<TPizza[]> => {
+): Promise<TProduct[]> => {
   try {
     const foundPizzas = await Promise.resolve(
       pizzas.filter((pizza) => pizza.categoryId === categoryId)
@@ -28,7 +28,7 @@ export const getPizzasByCategory = async (
   }
 };
 
-export const getPizzasByFilter = async (type: TPizza["type"]) => {
+export const geTProductsByFilter = async (type: TProduct["type"]) => {
   try {
     const foundPizzas = await Promise.resolve(
       pizzas.filter((pizza) => pizza.type === type)
