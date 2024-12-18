@@ -3,7 +3,13 @@ import morgan from 'morgan';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-import { authRouter, tokensRouter } from './routers';
+import {
+  authRouter,
+  tokensRouter,
+  categoryRouter,
+  ingredientsRouter,
+  productsRouter,
+} from './routers';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -24,10 +30,12 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('images'));
 app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, 'dist')));
 
 app.use('/api/auth', authRouter);
 app.use('/api/tokens', tokensRouter);
+app.use('/api/categories', categoryRouter);
+app.use('/api/ingredients', ingredientsRouter);
+app.use('/api/products', productsRouter);
 
 app.get('*', (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));

@@ -1,15 +1,13 @@
 import { TCategory } from "@shared/types/types";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "@app/store/hooks";
-import { commonFilterSelectors } from "@store/reducers/common-filter/selectors";
-import { geTProductsByCategory } from "@app/service/product";
-import { seTProducts } from "@app/store/reducers/common-filter/dispatchers";
 import s from "./style.module.scss";
 import cn from "classnames";
 import { commonUISelectors } from "@app/store/reducers/common-ui/selectors";
+import { productInfoSelectors } from "@app/store/reducers/product-info/selectors";
 export const CategoryFilter = () => {
   const { isMobile } = useAppSelector(commonUISelectors.commonUIInfo);
-  const { categories } = useAppSelector(commonFilterSelectors.commonFilter);
+  const { categories } = useAppSelector(productInfoSelectors.productInfo);
   const [currentTab, setCurrentTab] = useState<number | undefined>(undefined);
 
   useEffect(() => {
@@ -20,9 +18,7 @@ export const CategoryFilter = () => {
 
   const handleSetCurrentTab = async (categoryId: TCategory["id"]) => {
     try {
-      const pizzas = await geTProductsByCategory(categoryId);
       setCurrentTab(categoryId);
-      seTProducts(pizzas);
     } catch (error) {
       console.error("Ошибка при установке таба", error);
     }

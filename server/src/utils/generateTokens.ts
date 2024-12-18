@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { jwtConfig } from 'config';
-import { TTokenPayload, TTokens } from 'types/user';
+import { TTokenPayload, TTokens } from 'types';
 
 dotenv.config();
 

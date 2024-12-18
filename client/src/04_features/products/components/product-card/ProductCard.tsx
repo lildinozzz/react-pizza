@@ -2,22 +2,28 @@ import { TProduct } from "@shared/types/types";
 import s from "./style.module.scss";
 
 type TProductCardProps = {
-  pizza: TProduct;
+  product: TProduct;
 };
 
-export const ProductCard = ({ pizza }: TProductCardProps) => {
+export const ProductCard = ({ product }: TProductCardProps) => {
+  const { imageUrl, name, ingredients, prices } = product;
+
+  const filteredIngredients = ingredients
+    .map((ingredient) => ingredient.trim())
+    .join(", ");
+
   return (
     <div className={s.wrapperCard}>
-      <img src={pizza.imageUrl} alt={pizza.name} />
+      <img src={imageUrl} alt={name} />
 
-      <div className={s.wrapperCardTitle}>{pizza.name}</div>
+      <div className={s.wrapperCardTitle}>{name}</div>
 
-      <p className={s.wrapperCardIngredients}>{pizza.ingredients}</p>
+      <p className={s.wrapperCardIngredients}>{filteredIngredients}</p>
 
       <div className={s.wrapperCardBottom}>
         <span>
           от
-          <span className={s.wrapperCardBottomPrice}> {pizza.prices[0]} ₽</span>
+          <span className={s.wrapperCardBottomPrice}> {prices[0]} ₽</span>
         </span>
         <div className={s.wrapperCardBottomActions}></div>
       </div>

@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
-import { generateTokens } from 'utils';
 import { cookiesConfig } from 'config';
-const { User } = require('db/models');
+import { generateTokens } from 'utils';
+const { User } = require('../../db/models');
 
 const authRouter: Router = Router();
 
@@ -12,14 +12,10 @@ authRouter.post('/authenticate', async (req: Request, res: Response) => {
     const { email, password } = req.body;
     const userUUID = uuidv4();
 
-    console.log('Request received:', { email, password });
-
     if (!email || !password) {
       res.status(400).json({ message: 'Проверьте на заполненность всех полей' });
       return;
     }
-
-    console.log('Looking for user with email:', email);
 
     const [user, created] = await User.findOrCreate({
       where: { email },

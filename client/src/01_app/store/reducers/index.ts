@@ -1,7 +1,7 @@
 import { Reducer } from "@reduxjs/toolkit";
 import { TStore } from "../../../06_shared/types/types";
 import { commonUI } from "./common-ui";
-import { commonFilter } from "./common-filter";
+import { productInfo } from "./product-info";
 import { userInfo } from "./user-info";
 
 type TReducer = {
@@ -10,6 +10,6 @@ type TReducer = {
 
 export const reducer: TReducer = {
   commonUI,
-  commonFilter,
+  productInfo,
   userInfo,
 };

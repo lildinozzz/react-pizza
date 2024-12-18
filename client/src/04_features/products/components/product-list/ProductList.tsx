@@ -1,16 +1,16 @@
 import React from "react";
 import { useAppSelector } from "@app/store/hooks";
-import { commonFilterSelectors } from "@store/reducers/common-filter/selectors";
 import s from "./style.module.scss";
 import { ProductCard } from "../product-card";
+import { productInfoSelectors } from "@app/store/reducers/product-info/selectors";
 
 export const ProductList: React.FC = () => {
-  const { pizzas } = useAppSelector(commonFilterSelectors.commonFilter);
+  const { products } = useAppSelector(productInfoSelectors.productInfo);
 
   return (
     <div className={s.wrapper}>
-      {pizzas.map((pizza) => (
-        <ProductCard key={pizza.id} pizza={pizza} />
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

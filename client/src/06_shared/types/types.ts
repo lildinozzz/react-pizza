@@ -6,22 +6,29 @@ export type TCategory = {
   name: string;
 };
 
+export type TIngredient = TCategory;
+
+export type TProductInfoState = {
+  categories: TCategory[];
+  ingredients: TIngredient[];
+  products: TProduct[];
+};
+
 export type TProduct = {
   id: number;
   type: "constructor" | "new";
-  dough: "traditional" | "thin";
   prices: number[];
-  ingredients: string;
+  ingredients: string[];
+  dough: "traditional" | "thin";
   isConstructor: boolean;
   name: string;
   imageUrl: string;
-  categoryId: number;
 };
 
 export type TStore = {
   commonUI: TCommonUIInitialState;
-  commonFilter: TCommonFilterInitialState;
   userInfo: TAuthState;
+  productInfo: TProductInfoState;
 };
 
 export type TCommonUIInitialState = {
@@ -29,18 +36,9 @@ export type TCommonUIInitialState = {
   isSidebarOpen: boolean;
 };
 
-export type TCommonFilterInitialState = {
-  categories: TCategory[];
-  pizzas: TProduct[];
-};
-
 export type TUserInfoState = {
   user: TUserFromBackend;
 };
-
-export type TSetCategoriesPA = PA<TCommonFilterInitialState["categories"]>;
-
-export type TSeTProductsPA = PA<TCommonFilterInitialState["pizzas"]>;
 
 export type TSetIsMobilePA = PA<TCommonUIInitialState["isMobile"]>;
 

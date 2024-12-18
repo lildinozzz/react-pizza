@@ -6,7 +6,7 @@
   "scripts": {
     "db:migrate": "ts-node --transpileOnly ./node_modules/.bin/sequelize-cli db:migrate",
     "db:seed": "ts-node --transpileOnly ./node_modules/.bin/sequelize-cli db:seed:all",
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node -r tsconfig-paths/register src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"
   },
@@ -36,6 +36,7 @@
     "@types/node": "^22.10.2",
     "@types/uuid": "^10.0.0",
     "nodemon": "^2.0.15",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.2"
   },
   "engines": {

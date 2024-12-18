@@ -14,3 +14,14 @@ export type TUserPayload = {
   createdAt?: Date;
   updatedAt?: Date;
 };
+
+export type TProduct = {
+  id: number;
+  type: 'constructor' | 'new';
+  prices: number[];
+  ingredients: string[];
+  dough: 'traditional' | 'thin';
+  isConstructor: boolean;
+  name: string;
+  imageUrl: string;
+};
