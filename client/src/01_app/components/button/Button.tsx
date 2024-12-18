@@ -12,6 +12,8 @@ type TButtonProps = {
 
 export const Button = ({
   text,
+  onMouseEnter,
+  onMouseLeave,
   className,
   renderLoader,
   icon,
@@ -23,6 +25,8 @@ export const Button = ({
 
   return (
     <button
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       disabled={disabled}
       onClick={onClick}
       className={cn(s.button, className, {
