@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+import { TProduct } from 'types';
 
 const { Product, Category } = require('../../db/models');
 
@@ -6,7 +7,7 @@ const productsRouter: Router = Router();
 
 productsRouter.get('/', async (req: Request, res: Response) => {
   try {
-    const products = await Product.findAll();
+    const products: TProduct[] = await Product.findAll();
 
     res.status(200).json(products);
   } catch (error) {
@@ -19,7 +20,7 @@ productsRouter.get('/:categoryId', async (req: Request, res: Response) => {
   const { categoryId } = req.params;
 
   try {
-    const products = await Product.findAll({
+    const products: TProduct[] = await Product.findAll({
       include: [
         {
           model: Category,
@@ -30,7 +31,7 @@ productsRouter.get('/:categoryId', async (req: Request, res: Response) => {
       ],
     });
 
-    if (products.length === 0) {
+    if (!products.length) {
       res.status(404).json({ message: `Продукты для категории с ID ${categoryId} не найдены` });
       return;
     }
