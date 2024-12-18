@@ -7,8 +7,8 @@ export const OptionsFilter = () => {
       <div className={s.title}>Фильтрация</div>
 
       <div className={s.wrapper}>
-        <Checkbox text="Можно собирать" />
-        <Checkbox text="Новинки" />
+        <Checkbox name="constructor" text="Можно собирать" />
+        <Checkbox name="new" text="Новинки" />
       </div>
     </>
   );
