@@ -13,7 +13,7 @@ export const CategoryFilter = () => {
   const dispatch = useAppDispatch();
   const { isMobile } = useAppSelector(commonUISelectors.commonUIInfo);
   const { categories } = useAppSelector(productInfoSelectors.productInfo);
-  const [currentTab, setCurrentTab] = useState<number | undefined>(undefined);
+  const [currentTab, setCurrentTab] = useState<number>(1);
 
   const handleSetCurrentTab = async (categoryId: TCategory["id"]) => {
     try {
