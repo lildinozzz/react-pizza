@@ -22,6 +22,7 @@ class AuthService {
       return {
         ...response.data,
         user: { ...response.data.user, status: "logged" },
+        isAuthed: true,
       };
     } catch (error) {
       console.error("Error during registration request:", error);
@@ -33,7 +34,11 @@ class AuthService {
     const res = await this.client<TBackendAuthInfo>("/tokens/refresh");
     if (res.status !== 200)
       return Promise.reject(new Error("Cannot refresh tokens"));
-    return { ...res.data, user: { ...res.data.user, status: "logged" } };
+    return {
+      ...res.data,
+      user: { ...res.data.user, status: "logged" },
+      isAuthed: true,
+    };
   }
 
   async logout(): Promise<void> {

@@ -1,7 +1,7 @@
-import jwt, { JwtPayload } from 'jsonwebtoken';
-import { jwtConfig } from '../config/jwtConfig';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { TTokenPayload, TTokens } from '../types';
+import { jwtConfig } from 'config';
+import { TTokenPayload, TTokens } from 'types/user';
 
 dotenv.config();
 

@@ -2,6 +2,13 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
+    "baseUrl": "./src",
+    "paths": {
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@config/*": ["./src/config/*"],
+      "@types/*": ["./src/types/*"],
+      "@db/*": ["../db/*"]
+    },
     "outDir": "./dist",
     "esModuleInterop": true,
     "skipLibCheck": true,

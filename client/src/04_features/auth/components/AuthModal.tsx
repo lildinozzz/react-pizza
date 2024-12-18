@@ -5,7 +5,7 @@ import { Input } from "@app/components/input";
 import { CloseIcon } from "@shared/icons";
 import { useState } from "react";
 import { useAppDispatch } from "@app/store/hooks";
-import { authenticateThunk } from "@app/store/reducers/user-info/reducers";
+import { authenticate } from "@app/store/reducers/user-info/reducers";
 
 const AuthModal = ({ onClose }: TModalProps) => {
   const dispatch = useAppDispatch();
@@ -25,7 +25,9 @@ const AuthModal = ({ onClose }: TModalProps) => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    await dispatch(authenticateThunk(values));
+    await dispatch(authenticate(values));
+
+    onClose();
   };
 
   return (

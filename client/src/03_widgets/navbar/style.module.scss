@@ -17,6 +17,34 @@
   padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
+  &LoggedMenu {
+    width: 132px;
+    height: 136px;
+    background: var(--main-primary);
+    border: 1px solid var(--outline-color-grey);
+    border-radius: 10px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    right: 67.5px;
+    top: 75px;
+    padding: 8px 0;
+
+    button {
+      border: unset;
+      border-radius: unset;
+      height: 38px;
+      min-width: 132px;
+      width: 100%;
+
+      &:hover {
+        color: var(--button-color-orange);
+        background: var(--main-beige);
+      }
+    }
+  }
+
   &Meta {
     display: flex;
     align-items: center;
@@ -68,6 +96,10 @@
 @include media.mobile {
   .wrapper {
     justify-content: space-between;
+
+    &LoggedMenu {
+      right: 20px;
+    }
 
     &Meta {
       gap: 15px;

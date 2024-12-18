@@ -1,9 +1,9 @@
 import { Router, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { generateTokens } from '../utils/generateTokens';
-import { cookiesConfig } from '../config/cookiesConfig';
 import { v4 as uuidv4 } from 'uuid';
-const { User } = require('../../db/models');
+import { generateTokens } from 'utils';
+import { cookiesConfig } from 'config';
+const { User } = require('db/models');
 
 const authRouter: Router = Router();
 

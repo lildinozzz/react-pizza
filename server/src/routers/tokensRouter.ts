@@ -1,8 +1,8 @@
+import { cookiesConfig } from 'config';
 import { Router, Request, Response } from 'express';
-import { cookiesConfig } from '../config/cookiesConfig';
-import { generateTokens } from '../utils/generateTokens';
-import { verifyRefreshToken } from '../middlewares/verifyRefreshToken';
-import { TUserPayload } from '../types';
+import { verifyRefreshToken } from 'middlewares';
+import { TUserPayload } from 'types/user';
+import { generateTokens } from 'utils';
 
 const tokensRouter = Router();
 

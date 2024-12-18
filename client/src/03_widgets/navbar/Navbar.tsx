@@ -6,14 +6,37 @@ import { Button, SearchInput } from "@components/index";
 import { UserIcon, CartIcon } from "@icons/index";
 import { setIsSidebarOpen } from "@store/reducers/common-ui/dispatchers";
 import { useAuthModal } from "@features/auth/components/index";
-import { useAppSelector } from "@app/store/hooks";
+import { useAppDispatch, useAppSelector } from "@app/store/hooks";
+import { userInfoSelectors } from "@app/store/reducers/user-info/selectors";
+import { logout } from "@app/store/reducers/user-info/reducers";
+import { useState } from "react";
 
 export const Navbar = () => {
+  const dispatch = useAppDispatch();
   const { isMobile } = useAppSelector(commonUISelectors.commonUIInfo);
+  const { isAuthed } = useAppSelector(userInfoSelectors.userInfo);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authModal] = useAuthModal();
 
   const handleStartAuth = () => {
+    if (isAuthed) {
+      setIsMenuOpen(!isMenuOpen);
+      return;
+    }
+
     authModal({});
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  const renderButtonText = (): string => {
+    if (isMobile) return "";
+
+    if (isAuthed) return "Профиль";
+
+    return "Войти";
   };
 
   return (
@@ -35,8 +58,15 @@ export const Navbar = () => {
           onClick={handleStartAuth}
           icon={<UserIcon />}
           className={s.wrapperActionsFirst}
-          text={!isMobile ? "Войти" : ""}
+          text={renderButtonText()}
         />
+        {isMenuOpen && isAuthed && (
+          <div className={s.wrapperLoggedMenu}>
+            <Button text="Настройки" />
+            <Button text="Заказы" />
+            <Button onClick={handleLogout} text="Выйти" />
+          </div>
+        )}
         <Button onClick={() => setIsSidebarOpen(true)} icon={<CartIcon />} />
       </div>
     </nav>

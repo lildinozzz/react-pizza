@@ -16,6 +16,7 @@ export type TUserStatusType =
 export type TAuthState = {
   accessToken: string;
   user: TUserStatusType;
+  isAuthed: boolean;
 };
 
 export type TAuthForm = {
