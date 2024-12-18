@@ -1,0 +1,11 @@
+@use "@typography" as typography;
+@use "@mixins" as mixins;
+
+.wrapper {
+  @include mixins.checkboxesWrapper;
+}
+
+.title {
+  margin-top: 20px;
+  @include typography.title-l-regular;
+}

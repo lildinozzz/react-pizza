@@ -1,22 +1,10 @@
 @use "@media" as media;
 @use "@typography" as typography;
 
-.wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  width: calc(3 * 315px + 2 * 40px);
-  margin: 0 auto;
-}
-
 .wrapperCard {
-  position: relative;
-  flex: 1 1 285px;
-  border-radius: 20px;
   width: 285px;
-  min-height: 430px;
-  max-height: 460px;
-  margin-right: 20px;
+  border-radius: 20px;
+  height: auto;
 
   img {
     width: 100%;
@@ -28,29 +16,25 @@
     margin-top: 5px;
     @include typography.title-l-regular;
     font-size: 22px;
+    font-weight: 500;
   }
 
   &Ingredients {
     margin-top: 10px;
     color: #b1b1b1;
+    font-size: 14px;
   }
 
   &Bottom {
-    position: absolute;
-    bottom: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
 
     &Price {
       @include typography.title-m-regular;
-      margin-top: 10px;
+      font-weight: 700;
+      font-size: 18px;
     }
-  }
-}
-
-@include media.mobile {
-  .wrapper {
-    margin-right: 20px;
   }
 }

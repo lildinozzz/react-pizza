@@ -5,7 +5,6 @@
 .wrapper {
   display: flex;
   align-items: center;
-  gap: 50px;
   width: 100%;
   border-bottom: 1px solid var(--outline-color-grey);
   position: fixed;
@@ -49,6 +48,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    margin-right: 50px;
 
     &Info {
       flex-shrink: 0;
@@ -83,6 +83,7 @@
       height: 50px;
       width: 110px;
       color: var(--button-color-orange);
+      margin-left: 20px;
       @include typography.title-m-regular;
     }
   }

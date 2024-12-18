@@ -1,0 +1,12 @@
+@use "@typography" as typography;
+@use "@mixins" as mixins;
+
+.wrapper {
+  @include mixins.checkboxesWrapper;
+}
+
+.title {
+  @include typography.title-h3;
+  margin-top: 10px;
+  font-size: 22px;
+}

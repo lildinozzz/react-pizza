@@ -6,12 +6,12 @@ export type TCategory = {
   name: string;
 };
 
-export type TPizza = {
+export type TProduct = {
   id: number;
   type: "constructor" | "new";
   dough: "traditional" | "thin";
   prices: number[];
-  ingredients: string[];
+  ingredients: string;
   isConstructor: boolean;
   name: string;
   imageUrl: string;
@@ -31,7 +31,7 @@ export type TCommonUIInitialState = {
 
 export type TCommonFilterInitialState = {
   categories: TCategory[];
-  pizzas: TPizza[];
+  pizzas: TProduct[];
 };
 
 export type TUserInfoState = {
@@ -40,7 +40,7 @@ export type TUserInfoState = {
 
 export type TSetCategoriesPA = PA<TCommonFilterInitialState["categories"]>;
 
-export type TSetPizzasPA = PA<TCommonFilterInitialState["pizzas"]>;
+export type TSeTProductsPA = PA<TCommonFilterInitialState["pizzas"]>;
 
 export type TSetIsMobilePA = PA<TCommonUIInitialState["isMobile"]>;
 
