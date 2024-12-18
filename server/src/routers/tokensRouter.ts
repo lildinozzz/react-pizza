@@ -1,7 +1,7 @@
 import { cookiesConfig } from 'config';
 import { Router, Request, Response } from 'express';
 import { verifyRefreshToken } from 'middlewares';
-import { TUserPayload } from 'types/user';
+import { TUserPayload } from 'types';
 import { generateTokens } from 'utils';
 
 const tokensRouter = Router();

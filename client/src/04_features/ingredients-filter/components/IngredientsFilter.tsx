@@ -1,23 +1,19 @@
 import { Checkbox } from "@app/components";
 import s from "./style.module.scss";
-
-const ingredients = [
-  "Сырный соус",
-  "Чеснок",
-  "Солённые огурчики",
-  "Томаты",
-  "Красный лук",
-  "Моцарелла",
-];
+import { useAppSelector } from "@app/store/hooks";
+import { productInfoSelectors } from "@app/store/reducers/product-info/selectors";
 
 export const IngredientsFilter = () => {
+  const { ingredients } = useAppSelector(productInfoSelectors.productInfo);
+
   return (
     <>
-      <div className={s.title}>Ингридиенты: </div>
+      <div className={s.title}>Ингредиенты: </div>
       <div className={s.wrapper}>
-        {ingredients.map((ingredient, index) => (
-          <Checkbox key={index} text={ingredient} />
-        ))}
+        {ingredients.map((ingredient) => {
+          const { id, name } = ingredient;
+          return <Checkbox key={id} text={name} />;
+        })}
       </div>
     </>
   );

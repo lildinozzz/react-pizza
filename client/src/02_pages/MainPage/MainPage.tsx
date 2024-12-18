@@ -1,26 +1,26 @@
 import { Header, Navbar, SideFilters } from "@widgets/index";
 import s from "./style.module.scss";
 import { useEffect } from "react";
-import {
-  setCategories,
-  seTProducts,
-} from "@store/reducers/common-filter/dispatchers";
-import { getAllPizzas } from "@app/service/product";
-import { getAllCategories } from "@app/service/category";
 import { ProductList } from "@features/products/components/product-list";
 import { useSelector } from "react-redux";
 import { commonUISelectors } from "@app/store/reducers/common-ui/selectors";
-
+import {
+  getAllCategories,
+  getAllIngredients,
+  getAllProducts,
+} from "@app/store/reducers/product-info/reducers";
+import { useAppDispatch } from "@app/store/hooks";
 export const MainPage = () => {
   // const { isSidebarOpen } = useSelector(commonUISelectors.commonUIInfo);
   const { isMobile } = useSelector(commonUISelectors.commonUIInfo);
-  const products = getAllPizzas();
-  const categories = getAllCategories();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setCategories(categories);
-    seTProducts(products);
-  }, [categories, products]);
+    void dispatch(getAllCategories());
+    void dispatch(getAllIngredients());
+    void dispatch(getAllProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className={s.wrapper}>
