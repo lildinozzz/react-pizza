@@ -2,10 +2,9 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Ingredient extends Model {
-    // Связи для Ingredient
     static associate(models) {
       this.belongsToMany(models.Product, {
-        through: 'ProductIngredients',
+        through: 'productIngredients',
         foreignKey: 'ingredientId',
         as: 'products',
       });

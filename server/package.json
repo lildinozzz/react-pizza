@@ -4,8 +4,7 @@
   "description": "A simple Express application",
   "main": "server.js",
   "scripts": {
-    "db:migrate": "ts-node --transpileOnly ./node_modules/.bin/sequelize-cli db:migrate",
-    "db:seed": "ts-node --transpileOnly ./node_modules/.bin/sequelize-cli db:seed:all",
+    "db:reset": "sequelize db:drop && sequelize db:create && sequelize db:migrate && sequelize db:seed:all",
     "dev": "ts-node -r tsconfig-paths/register src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"

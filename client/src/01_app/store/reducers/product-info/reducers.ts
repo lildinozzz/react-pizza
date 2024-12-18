@@ -18,3 +18,8 @@ export const getAllProducts = createAsyncThunk<TProduct[]>(
   "products/getAllProducts",
   () => productsService.getAllProducts()
 );
+
+export const getAllProductsByCategory = createAsyncThunk<TProduct[], number>(
+  "products/getAllProductsByCategory",
+  (categoryId: number) => productsService.getAllProductsByCategory(categoryId)
+);
