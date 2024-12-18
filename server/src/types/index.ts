@@ -25,3 +25,10 @@ export type TProduct = {
   name: string;
   imageUrl: string;
 };
+
+export type TCategory = {
+  id: number;
+  name: string;
+};
+
+export type TIngredient = TCategory;

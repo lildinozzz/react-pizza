@@ -1,11 +1,12 @@
 import { Request, Response, Router } from 'express';
+import { TCategory } from 'types';
 const { Category } = require('../../db/models');
 
 const categoryRouter: Router = Router();
 
 categoryRouter.get('/', async (req: Request, res: Response) => {
   try {
-    const categories = await Category.findAll();
+    const categories: TCategory[] = await Category.findAll();
 
     res.status(200).json(categories);
   } catch (error) {
