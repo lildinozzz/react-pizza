@@ -33,6 +33,18 @@ class ProductsService {
     }
   }
 
+  async getAllProductsBySearch(query: string) {
+    try {
+      const response = await this.client<TProduct[]>(
+        `/products/search?name=${query}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching filtered products:", error);
+      return [];
+    }
+  }
+
   async getAllProductsByCategory(categoryId: number): Promise<TProduct[]> {
     try {
       const response = await this.client<TProduct[]>(

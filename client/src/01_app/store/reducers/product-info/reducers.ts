@@ -28,3 +28,8 @@ export const getAllProductsByQuery = createAsyncThunk<TProduct[], string>(
   "products/getAllProductsByQuery",
   (query: string) => productsService.getAllProductsByQuery(query)
 );
+
+export const getAllProductsBySearch = createAsyncThunk<TProduct[], string>(
+  "products/getAllProductsBySearch",
+  (query: string) => productsService.getAllProductsBySearch(query)
+);

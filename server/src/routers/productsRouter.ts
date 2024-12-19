@@ -1,4 +1,5 @@
 import { Request, Response, Router } from 'express';
+import { Op } from 'sequelize';
 import { TProduct } from 'types';
 import { buildFilterCondition } from 'utils';
 
@@ -34,6 +35,25 @@ productsRouter.get('/filter', async (req: Request, res: Response) => {
   } catch (error) {
     console.error('Ошибка при получении продуктов с фильтром:', error);
     res.status(500).json({ message: 'Ошибка при получении продуктов с фильтром', error });
+  }
+});
+
+productsRouter.get('/search', async (req: Request, res: Response) => {
+  const { name } = req.query;
+
+  try {
+    const products = await Product.findAll({
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
+    });
+
+    res.json(products);
+  } catch (error) {
+    console.error('Ошибка при получении продуктов:', error);
+    res.status(500).json({ message: 'Ошибка при получении продуктов', error });
   }
 });
 
