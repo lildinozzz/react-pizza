@@ -21,9 +21,23 @@ class ProductsService {
     }
   }
 
+  async getAllProductsByQuery(query: string) {
+    try {
+      const response = await this.client<TProduct[]>(
+        `/products/filter?${query}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching filtered products:", error);
+      return [];
+    }
+  }
+
   async getAllProductsByCategory(categoryId: number): Promise<TProduct[]> {
     try {
-      const response = await this.client<TProduct[]>(`/products/${categoryId}`);
+      const response = await this.client<TProduct[]>(
+        `/products/category/${categoryId}`
+      );
 
       if (response.status !== 200) {
         throw new Error(

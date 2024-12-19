@@ -3,19 +3,19 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const ingredients = [
-      'Сырный соус',
-      'Чеснок',
-      'Солённые огурчики',
-      'Томаты',
-      'Красный лук',
-      'Моцарелла',
+      { name: 'Сырный соус', value: 'cheese_sauce' },
+      { name: 'Чеснок', value: 'garlic' },
+      { name: 'Солённые огурчики', value: 'pickles' },
+      { name: 'Томаты', value: 'tomatoes' },
+      { name: 'Красный лук', value: 'red_onion' },
+      { name: 'Моцарелла', value: 'mozzarella' },
     ];
 
-    // Добавляем ингредиенты в базу данных
     await queryInterface.bulkInsert(
       'Ingredients',
-      ingredients.map((name) => ({
-        name,
+      ingredients.map((ingredient) => ({
+        name: ingredient.name,
+        value: ingredient.value,
         createdAt: new Date(),
         updatedAt: new Date(),
       })),

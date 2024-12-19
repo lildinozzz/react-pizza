@@ -8,10 +8,28 @@ export const ProductList: React.FC = () => {
   const { products } = useAppSelector(productInfoSelectors.productInfo);
 
   return (
-    <div className={s.wrapper}>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <>
+      {!!products.length && (
+        <div className={s.wrapper}>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      )}
+
+      {!products.length && (
+        <div className={s.wrapperEmpty}>
+          <div className={s.wrapperEmptyMeta}>
+            <div className={s.wrapperEmptyMetaTitle}>
+              К сожалению, мы не нашли пиццы по вашим фильтрам
+            </div>
+
+            <p>Попробуйте изменить фильтры или попробовать позже</p>
+          </div>
+
+          <img src="/images/products-empty.png" />
+        </div>
+      )}
+    </>
   );
 };

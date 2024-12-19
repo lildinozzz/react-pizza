@@ -6,6 +6,7 @@ import { setIsMobile } from "./store/reducers/common-ui/dispatchers";
 import { MainPage, NotFoundPage } from "@pages/index";
 import { useAppDispatch } from "./store/hooks";
 import { refreshAuth } from "./store/reducers/user-info/reducers";
+import { ToastContainer } from "react-toastify";
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -26,6 +27,8 @@ export const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+
+      <ToastContainer />
     </Router>
   );
 };

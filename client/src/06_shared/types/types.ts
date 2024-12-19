@@ -6,7 +6,7 @@ export type TCategory = {
   name: string;
 };
 
-export type TIngredient = TCategory;
+export type TIngredient = TCategory & { value: string };
 
 export type TProductInfoState = {
   categories: TCategory[];

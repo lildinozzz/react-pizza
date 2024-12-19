@@ -10,12 +10,8 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      type: {
-        type: Sequelize.ENUM('constructor', 'new'),
-        allowNull: false,
-      },
       prices: {
-        type: Sequelize.ARRAY(Sequelize.INTEGER),
+        type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
       },
       ingredients: {
@@ -28,11 +24,13 @@ module.exports = {
       },
       isConstructor: {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
       },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      isNew: {
+        type: Sequelize.BOOLEAN,
       },
       imageUrl: {
         type: Sequelize.STRING,

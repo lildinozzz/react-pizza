@@ -6,11 +6,12 @@ type TCheckboxProps = {
   name?: string;
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
-export const Checkbox = ({ text, onClick, name }: TCheckboxProps) => {
+export const Checkbox = ({ text, onClick, name, onChange }: TCheckboxProps) => {
   return (
     <div className={s.wrapper}>
       <input
         name={name}
+        onChange={onChange}
         onClick={onClick}
         className={s.input}
         type="checkbox"

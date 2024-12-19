@@ -4,6 +4,7 @@ type TCheckboxRadioProps = {
   text?: string;
   value: string;
   selectedValue: string;
+  name?: string;
   onChange: (value: string) => void;
 };
 
@@ -12,6 +13,7 @@ export const CheckboxRadio = ({
   onChange,
   value,
   selectedValue,
+  name,
 }: TCheckboxRadioProps) => {
   const handleChange = () => {
     onChange(value);
@@ -20,6 +22,7 @@ export const CheckboxRadio = ({
   return (
     <div className={s.wrapper}>
       <input
+        name={name}
         className={s.input}
         type="radio"
         checked={selectedValue === value}

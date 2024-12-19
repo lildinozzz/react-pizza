@@ -1,22 +1,20 @@
-import { createModalHook, Modal, TModalProps } from "@shared/modal";
-import s from "./style.module.scss";
+import { useState } from "react";
+import { z, ZodIssue } from "zod";
 import { Button } from "@components/button";
 import { Input } from "@app/components/input";
 import { CloseIcon } from "@shared/icons";
-import { useState } from "react";
-import { z, ZodIssue } from "zod";
 import { useAppDispatch } from "@app/store/hooks";
 import { authenticate } from "@app/store/reducers/user-info/reducers";
+import s from "./style.module.scss";
+import { createModalHook, Modal, TModalProps } from "@shared/modal";
+import { toast } from "react-toastify";
 
-interface FormState {
+type TFormState = {
   email: string;
   password: string;
-}
+};
 
-interface ErrorState {
-  email: string;
-  password: string;
-}
+type TErrorState = TFormState;
 
 const formSchema = z.object({
   email: z
@@ -29,71 +27,63 @@ const formSchema = z.object({
 const AuthModal = ({ onClose }: TModalProps) => {
   const dispatch = useAppDispatch();
 
-  const [formState, setFormState] = useState<FormState>({
+  const [formState, setFormState] = useState<TFormState>({
     email: "",
     password: "",
   });
 
-  const [errorState, setErrorState] = useState<ErrorState>({
+  const [errorState, setErrorState] = useState<TErrorState>({
     email: "",
     password: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     setFormState((prevState) => ({
       ...prevState,
       [name]: value,
     }));
 
-    setErrorState({
-      email: "",
-      password: "",
-    });
+    if (name in errorState) {
+      setErrorState((prevState) => ({
+        ...prevState,
+        [name]: "",
+      }));
+    }
   };
 
-  const resetValidation = () => {
-    setFormState({
-      email: "",
-      password: "",
-    });
-  };
-
-  const validateForm = () => {
-    resetValidation();
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
     const result = formSchema.safeParse(formState);
 
     if (!result.success) {
-      const newErrors: ErrorState = {
+      const newErrors: TErrorState = {
         email: "",
         password: "",
       };
 
-      result.error.errors.reduce((acc: ErrorState, err: ZodIssue) => {
-        const field = String(err.path[0]); // Преобразуем путь в строку
-        if (field === "email" || field === "password") {
-          acc[field] = err.message; // Присваиваем сообщение ошибки
+      result.error.errors.forEach((err: ZodIssue) => {
+        const field = String(err.path[0]);
+        if (field in newErrors) {
+          newErrors[field as keyof TErrorState] = err.message;
         }
-        return acc;
-      }, newErrors);
+      });
 
       setErrorState(newErrors);
-
       return;
     }
 
-    // Диспатчим успешную аутентификацию
     dispatch(authenticate(formState));
 
-    // Закрываем модал
-    onClose();
-  };
+    toast.success("Вы успешно вошли", {
+      position: "bottom-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+    });
 
-  // Обработчик сабмита формы
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    validateForm();
+    onClose();
   };
 
   return (
@@ -114,15 +104,18 @@ const AuthModal = ({ onClose }: TModalProps) => {
           </div>
 
           <Input
+            label="Email"
             isError={!!errorState.email}
             errorMessage={errorState.email}
             className={s.modalInput}
             placeholder="your_email@gmail.com"
             name="email"
             onChange={handleInputChange}
+            value={formState.email}
           />
 
           <Input
+            label="Password"
             isError={!!errorState.password}
             errorMessage={errorState.password}
             className={s.modalInput}
