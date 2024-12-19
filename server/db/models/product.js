@@ -39,6 +39,10 @@ module.exports = (sequelize, DataTypes) => {
       isNew: {
         type: DataTypes.BOOLEAN,
       },
+      productCount: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       ingredients: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,

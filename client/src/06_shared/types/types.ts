@@ -12,6 +12,7 @@ export type TProductInfoState = {
   categories: TCategory[];
   ingredients: TIngredient[];
   products: TProduct[];
+  currentCartCounter: number;
 };
 
 export type TProduct = {
@@ -23,6 +24,7 @@ export type TProduct = {
   isConstructor: boolean;
   name: string;
   imageUrl: string;
+  productCount: number;
 };
 
 export type TStore = {
@@ -41,5 +43,9 @@ export type TUserInfoState = {
 };
 
 export type TSetIsMobilePA = PA<TCommonUIInitialState["isMobile"]>;
+
+export type TSetCurrentCartCounter = PA<
+  TProductInfoState["currentCartCounter"]
+>;
 
 export type TSetIsSidebarOpenPA = PA<TCommonUIInitialState["isSidebarOpen"]>;

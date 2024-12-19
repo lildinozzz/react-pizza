@@ -1,0 +1,142 @@
+@use "@media" as media;
+@use "@typography" as typography;
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 500px 500px;
+  height: 580px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  &Left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: var(--main-primary);
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+
+    img {
+      width: 300px;
+      height: 300px;
+    }
+
+    &ContainerMiddle {
+      position: absolute;
+      border-style: dotted;
+      height: 350px;
+      width: 350px;
+      border-radius: 400px;
+      border: 2px dashed var(--border-color-grey);
+    }
+
+    &ContainerLarge {
+      position: absolute;
+      height: 430px;
+      width: 430px;
+      border-radius: 400px;
+      border: 2px dashed var(--border-color-grey);
+    }
+  }
+
+  &Right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background: var(--main-beige);
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
+    padding: 40px;
+
+    &Select {
+      margin-top: 15px;
+      height: 234px;
+      width: 100%;
+
+      &Title {
+        @include typography.title-h3;
+        font-weight: 700;
+      }
+    }
+
+    &Buttons {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 59px;
+      background: var(--background-color-dark-grey);
+      padding: 20px 15px;
+      border-radius: 30px;
+    }
+
+    &Button {
+      border: unset;
+      min-width: 77px;
+      width: 100%;
+      cursor: pointer;
+      padding: 5px 10px;
+      height: 43px;
+      border-radius: 25px;
+      background: unset;
+      transition: all 0.3s ease;
+      @include typography.title-m-regular;
+
+      &Active {
+        background: var(--main-primary);
+        transform: scale(1.1);
+        color: var(--button-color-orange);
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    &Meta {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+
+      &Title {
+        @include typography.title-h2;
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+@include media.tablet {
+  .wrapper {
+    grid-template-columns: 370px 370px;
+
+    &Left {
+      img {
+        width: 200px;
+        height: 200px;
+      }
+
+      &ContainerMiddle {
+        width: 230px;
+        height: 230px;
+      }
+
+      &ContainerLarge {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+}
+
+.buttonSubmit {
+  background: var(--button-color-orange);
+  color: var(--main-primary);
+  width: 100%;
+  @include typography.title-l-regular;
+}

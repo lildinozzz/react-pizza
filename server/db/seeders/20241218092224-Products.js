@@ -23,6 +23,7 @@ module.exports = {
         imageUrl: '/images/pizza/1.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 3,
       },
       {
         id: 2,
@@ -44,6 +45,7 @@ module.exports = {
         imageUrl: '/images/pizza/2.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 10,
       },
       {
         id: 3,
@@ -63,6 +65,7 @@ module.exports = {
         imageUrl: '/images/pizza/3.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 7,
       },
       {
         id: 4,
@@ -75,6 +78,7 @@ module.exports = {
         imageUrl: '/images/pizza/4.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 1,
       },
       {
         id: 5,
@@ -95,6 +99,7 @@ module.exports = {
         imageUrl: '/images/pizza/5.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 2,
       },
       {
         id: 6,
@@ -107,6 +112,7 @@ module.exports = {
         imageUrl: '/images/pizza/6.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 13,
       },
       {
         id: 7,
@@ -119,6 +125,7 @@ module.exports = {
         imageUrl: '/images/pizza/7.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 6,
       },
       {
         id: 8,
@@ -131,6 +138,7 @@ module.exports = {
         imageUrl: '/images/pizza/8.png',
         createdAt: new Date(),
         updatedAt: new Date(),
+        productCount: 0,
       },
     ]);
   },
