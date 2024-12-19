@@ -3,7 +3,7 @@
 
 .wrapper {
   position: sticky;
-  top: 95px;
+  top: 105px;
   align-self: flex-start;
   width: 300px;
 
@@ -12,7 +12,7 @@
   }
 
   @include media.mobile {
-    top: -70px;
+    top: 40px;
   }
 }
 

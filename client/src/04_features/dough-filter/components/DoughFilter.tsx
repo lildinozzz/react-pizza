@@ -1,14 +1,12 @@
 import { CheckboxRadio } from "@app/components";
 import s from "./style.module.scss";
-import { useState } from "react";
 
-export const DoughFilter = () => {
-  const [selectedValue, setSelectedValue] = useState<string>("traditional");
+type TDoughFilter = {
+  selectedValue: string;
+  onChange: (value: string) => void;
+};
 
-  const handleRadioChange = (value: string) => {
-    setSelectedValue(value);
-  };
-
+export const DoughFilter = ({ selectedValue, onChange }: TDoughFilter) => {
   return (
     <>
       <div className={s.title}>Тип теста:</div>
@@ -16,15 +14,17 @@ export const DoughFilter = () => {
       <div className={s.wrapper}>
         <CheckboxRadio
           text="Традиционное"
+          name="traditional"
           value="traditional"
           selectedValue={selectedValue}
-          onChange={handleRadioChange}
+          onChange={onChange}
         />
         <CheckboxRadio
           text="Тонкое"
+          name="thin"
           value="thin"
           selectedValue={selectedValue}
-          onChange={handleRadioChange}
+          onChange={onChange}
         />
       </div>
     </>

@@ -5,7 +5,6 @@ module.exports = {
     await queryInterface.bulkInsert('Products', [
       {
         id: 1,
-        type: 'new',
         prices: [395, 729, 1220],
         ingredients: [
           'Цыпленок',
@@ -19,6 +18,7 @@ module.exports = {
         ],
         dough: 'traditional',
         isConstructor: true,
+        isNew: false,
         name: 'Сырный цыпленок',
         imageUrl: '/images/pizza/1.png',
         createdAt: new Date(),
@@ -26,7 +26,6 @@ module.exports = {
       },
       {
         id: 2,
-        type: 'new',
         prices: [449, 820, 1400],
         ingredients: [
           'Острая чоризо',
@@ -40,6 +39,7 @@ module.exports = {
         ],
         dough: 'thin',
         isConstructor: false,
+        isNew: false,
         name: 'Диабло',
         imageUrl: '/images/pizza/2.png',
         createdAt: new Date(),
@@ -47,7 +47,6 @@ module.exports = {
       },
       {
         id: 3,
-        type: 'new',
         prices: [399, 730, 1235],
         ingredients: [
           'Мясной соус болоньезе',
@@ -59,6 +58,7 @@ module.exports = {
         ],
         dough: 'thin',
         isConstructor: false,
+        isNew: true,
         name: 'Чизбургер-пицца',
         imageUrl: '/images/pizza/3.png',
         createdAt: new Date(),
@@ -66,11 +66,11 @@ module.exports = {
       },
       {
         id: 4,
-        type: 'new',
         prices: [419, 799, 1399],
         ingredients: ['Моцарелла', 'помидоры', 'базилик', 'оливковое масло', 'томатный соус'],
         dough: 'traditional',
         isConstructor: false,
+        isNew: false,
         name: 'Маргарита',
         imageUrl: '/images/pizza/4.png',
         createdAt: new Date(),
@@ -78,7 +78,6 @@ module.exports = {
       },
       {
         id: 5,
-        type: 'new',
         prices: [469, 899, 1499],
         ingredients: [
           'Грибы',
@@ -91,6 +90,7 @@ module.exports = {
         ],
         dough: 'thin',
         isConstructor: false,
+        isNew: false,
         name: 'Вегетарианская',
         imageUrl: '/images/pizza/5.png',
         createdAt: new Date(),
@@ -98,11 +98,11 @@ module.exports = {
       },
       {
         id: 6,
-        type: 'new',
         prices: [499, 929, 1550],
         ingredients: ['Пепперони', 'моцарелла', 'томаты', 'соус маринара'],
         dough: 'thin',
         isConstructor: false,
+        isNew: true,
         name: 'Пепперони',
         imageUrl: '/images/pizza/6.png',
         createdAt: new Date(),
@@ -110,11 +110,11 @@ module.exports = {
       },
       {
         id: 7,
-        type: 'new',
         prices: [459, 890, 1500],
         ingredients: ['Ветчина', 'ананасы', 'моцарелла', 'соус барбекю', 'помидоры'],
         dough: 'thin',
         isConstructor: false,
+        isNew: false,
         name: 'Гавайская',
         imageUrl: '/images/pizza/7.png',
         createdAt: new Date(),
@@ -122,11 +122,11 @@ module.exports = {
       },
       {
         id: 8,
-        type: 'constructor',
         prices: [499, 930, 1580],
         ingredients: ['Пепперони', 'моцарелла', 'томаты', 'перец', 'соус пицца', 'орегано'],
         dough: 'traditional',
-        isConstructor: false,
+        isConstructor: true,
+        isNew: true,
         name: 'Пепперони',
         imageUrl: '/images/pizza/8.png',
         createdAt: new Date(),

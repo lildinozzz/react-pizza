@@ -31,4 +31,11 @@ export type TCategory = {
   name: string;
 };
 
+export type TFilter = {
+  isConstructor?: boolean;
+  isNew?: boolean;
+  dough?: string;
+
+}
+
 export type TIngredient = TCategory;

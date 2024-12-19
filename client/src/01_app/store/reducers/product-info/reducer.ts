@@ -5,6 +5,7 @@ import {
   getAllIngredients,
   getAllProducts,
   getAllProductsByCategory,
+  getAllProductsByQuery,
 } from "./reducers";
 
 const initialState: TProductInfoState = {
@@ -28,6 +29,9 @@ export const { actions, reducer } = createSlice({
       state.products = action.payload;
     });
     builder.addCase(getAllProductsByCategory.fulfilled, (state, action) => {
+      state.products = action.payload;
+    });
+    builder.addCase(getAllProductsByQuery.fulfilled, (state, action) => {
       state.products = action.payload;
     });
   },

@@ -2,26 +2,22 @@ import s from "./style.module.scss";
 
 type TNumberInputProps = {
   min: number;
-  max: number;
-  defaultValue?: number;
   placeholder?: string;
 };
 
 export const NumberInput = ({
   min,
-  max,
-  defaultValue,
   placeholder,
-}: TNumberInputProps) => {
+  onChange,
+}: TNumberInputProps & React.InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <div className={s.wrapper}>
       <input
         className={s.input}
+        onChange={onChange}
         type="number"
         placeholder={placeholder}
         min={min}
-        max={max}
-        defaultValue={defaultValue}
       />
       <span className={s.inputCurrency}>₽</span>
     </div>

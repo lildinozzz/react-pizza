@@ -1,4 +1,4 @@
-const { Model } = require("sequelize");
+const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
@@ -9,6 +9,13 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: 'categoryId',
         as: 'categories',
       });
+
+      this.belongsToMany(models.Ingredient, {
+        through: models.ProductIngredient,
+        foreignKey: 'productId',
+        otherKey: 'ingredientId',
+        as: 'productIngredients',
+      });
     }
   }
 
@@ -18,12 +25,8 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      type: {
-        type: DataTypes.ENUM('constructor', 'new'),
-        allowNull: false,
-      },
       prices: {
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
       dough: {
@@ -32,7 +35,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       isConstructor: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+      },
+      isNew: {
+        type: DataTypes.BOOLEAN,
       },
       ingredients: {
         type: DataTypes.ARRAY(DataTypes.STRING),

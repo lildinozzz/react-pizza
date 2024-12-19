@@ -4,8 +4,9 @@ module.exports = (sequelize, DataTypes) => {
   class Ingredient extends Model {
     static associate(models) {
       this.belongsToMany(models.Product, {
-        through: 'productIngredients',
+        through: models.ProductIngredient,
         foreignKey: 'ingredientId',
+        otherKey: 'productId',
         as: 'products',
       });
     }
@@ -13,18 +14,13 @@ module.exports = (sequelize, DataTypes) => {
 
   Ingredient.init(
     {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      name: DataTypes.STRING,
+      value: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: 'Ingredient',
       tableName: 'Ingredients',
-      timestamps: true,
-      createdAt: 'createdAt',
-      updatedAt: 'updatedAt',
     },
   );
 
