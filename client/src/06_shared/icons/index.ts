@@ -4,3 +4,6 @@ export { SearchIcon } from "./SearchIcon";
 export { UserIcon } from "./UserIcon";
 export { CloseIcon } from "./CloseIcon";
 export { RightArrowIcon } from "./RightArrowIcon";
+export { CartButtonIcon } from "./CartButtonIcon";
+export { ConstructorButtonIcon } from "./ConstructorButtonIcon";
+export { ConstructorIcon } from "./ConstructorIcon";

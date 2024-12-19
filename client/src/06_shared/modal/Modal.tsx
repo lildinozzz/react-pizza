@@ -1,10 +1,18 @@
-import { MouseEvent, PropsWithChildren } from "react";
+import { MouseEvent, PropsWithChildren, useEffect } from "react";
 import ReactDOM from "react-dom";
 import cn from "classnames";
 import { TModalContentProps } from "./Modal.types";
 import s from "./style.module.scss";
 
 const Root = ({ children }: PropsWithChildren) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, []);
+
   const modalRoot = document.getElementById("modal-portal");
 
   if (!modalRoot) {
