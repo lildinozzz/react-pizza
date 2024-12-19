@@ -3,18 +3,23 @@ import s from "./style.module.scss";
 import PizzaImage from "/images/navbar-pizza-image.png";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
 import { Button, SearchInput } from "@components/index";
-import { UserIcon, CartIcon } from "@icons/index";
+import { UserIcon, CartIcon, CartActiveIcon } from "@icons/index";
 import { setIsSidebarOpen } from "@store/reducers/common-ui/dispatchers";
 import { useAuthModal } from "@features/auth/components/index";
 import { useAppDispatch, useAppSelector } from "@app/store/hooks";
 import { userInfoSelectors } from "@app/store/reducers/user-info/selectors";
 import { logout } from "@app/store/reducers/user-info/reducers";
 import { useState } from "react";
+import { CartButton } from "@app/components/cart-button";
+import { productInfoSelectors } from "@app/store/reducers/product-info/selectors";
 
 export const Navbar = () => {
   const dispatch = useAppDispatch();
   const { isMobile } = useAppSelector(commonUISelectors.commonUIInfo);
   const { isAuthed } = useAppSelector(userInfoSelectors.userInfo);
+  const { currentCartCounter } = useAppSelector(
+    productInfoSelectors.productInfo
+  );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authModal] = useAuthModal();
 
@@ -39,6 +44,15 @@ export const Navbar = () => {
     return "Войти";
   };
 
+  const renderCartIcon = () => {
+    if (!currentCartCounter) return <CartIcon />;
+
+    return <CartActiveIcon />;
+  };
+
+  const iconToRender = renderCartIcon();
+  const textToRender = renderButtonText();
+
   return (
     <nav className={s.wrapper}>
       <Link to={"/"} className={s.wrapperMeta}>
@@ -58,7 +72,7 @@ export const Navbar = () => {
           onClick={handleStartAuth}
           icon={<UserIcon />}
           className={s.wrapperActionsFirst}
-          text={renderButtonText()}
+          text={textToRender}
         />
         {isMenuOpen && isAuthed && (
           <div className={s.wrapperLoggedMenu}>
@@ -67,7 +81,11 @@ export const Navbar = () => {
             <Button onClick={handleLogout} text="Выйти" />
           </div>
         )}
-        <Button onClick={() => setIsSidebarOpen(true)} icon={<CartIcon />} />
+        <CartButton
+          text="520 ₽"
+          onClick={() => setIsSidebarOpen(true)}
+          icon={iconToRender}
+        />
       </div>
     </nav>
   );

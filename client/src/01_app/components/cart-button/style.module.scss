@@ -1,0 +1,41 @@
+@use "@typography" as typography;
+@use "@media" as media;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  border-radius: 16px;
+  border: 1px solid var(--button-color-orange);
+
+  &Icon {
+    margin: 0 10px;
+  }
+
+  &Active {
+    width: 150px;
+    background: var(--button-color-orange);
+    color: var(--main-primary);
+    @include typography.title-m-regular;
+  }
+}
+
+.text {
+  &Mobile {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -15px;
+    left: 19px;
+    background: var(--button-color-orange);
+    border-radius: 16px;
+    width: 27px;
+    height: 27px;
+  }
+}

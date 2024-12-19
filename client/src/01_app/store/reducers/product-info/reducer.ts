@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction as PA } from "@reduxjs/toolkit";
 import { TProductInfoState } from "@shared/types/types";
 import {
   getAllCategories,
@@ -13,12 +13,17 @@ const initialState: TProductInfoState = {
   categories: [],
   ingredients: [],
   products: [],
+  currentCartCounter: 0,
 };
 
 export const { actions, reducer } = createSlice({
   name: "categories",
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentCartCounter: (state, action: PA<(prev: number) => number>) => {
+      state.currentCartCounter = action.payload(state.currentCartCounter);
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getAllCategories.fulfilled, (state, action) => {
       state.categories = action.payload;

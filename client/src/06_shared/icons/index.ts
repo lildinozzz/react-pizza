@@ -7,3 +7,7 @@ export { RightArrowIcon } from "./RightArrowIcon";
 export { CartButtonIcon } from "./CartButtonIcon";
 export { ConstructorButtonIcon } from "./ConstructorButtonIcon";
 export { ConstructorIcon } from "./ConstructorIcon";
+export { RemoveFromCartIcon } from "./RemoveFromCartIcon";
+export { AddToCartIcon } from "./AddToCartIcon";
+export { CartActiveIcon } from "./CartActiveIcon";
+export { TopDividerIcon } from "./TopDividerIcon";
