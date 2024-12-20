@@ -70,15 +70,6 @@
     gap: 12px;
     align-items: center;
 
-    button {
-      @include mixins.commonTransition;
-      will-change: transform;
-
-      &:hover {
-        transform: translateY(-2px);
-      }
-    }
-
     &First {
       height: 50px;
       width: 110px;

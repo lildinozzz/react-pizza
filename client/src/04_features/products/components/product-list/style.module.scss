@@ -7,6 +7,7 @@
   grid-template-columns: repeat(3, 1fr);
   width: 100%;
   gap: 14px;
+  justify-items: center;
 
   @include media.tablet {
     grid-template-columns: repeat(2, 1fr);
