@@ -35,7 +35,7 @@ export const SearchInput = () => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         className={s.input}
-        placeholder="Поиск пиццы..."
+        placeholder="Search for pizza..."
       />
     </div>
   );

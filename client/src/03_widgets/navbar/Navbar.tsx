@@ -12,6 +12,7 @@ import { logout } from "@app/store/reducers/user-info/reducers";
 import { useState } from "react";
 import { CartButton } from "@app/components/cart-button";
 import { productInfoSelectors } from "@app/store/reducers/product-info/selectors";
+import { pathsConfig } from "../../../config/paths/paths";
 
 export const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -38,7 +39,9 @@ export const Navbar = () => {
   };
 
   const onGoToSettings = () => {
-    navigate("/settings");
+    navigate(pathsConfig.settings.link);
+
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const onGoToCart = () => {};
@@ -46,9 +49,9 @@ export const Navbar = () => {
   const renderButtonText = (): string => {
     if (isMobile) return "";
 
-    if (isAuthed) return "Профиль";
+    if (isAuthed) return "Profile";
 
-    return "Войти";
+    return "Login";
   };
 
   const renderCartIcon = () => {
@@ -62,7 +65,7 @@ export const Navbar = () => {
 
   return (
     <nav className={s.wrapper}>
-      <Link to={"/"} className={s.wrapperMeta}>
+      <Link to={pathsConfig.home.link} className={s.wrapperMeta}>
         <img
           className={s.wrapperMetaImage}
           src={PizzaImage}
@@ -70,7 +73,7 @@ export const Navbar = () => {
         />
         <div className={s.wrapperMetaInfo}>
           <div>REACT PIZZA</div>
-          <p>вкусней уже некуда</p>
+          <p>It doesn't get any tastier.</p>
         </div>
       </Link>
       <SearchInput />
@@ -83,9 +86,9 @@ export const Navbar = () => {
         />
         {isMenuOpen && isAuthed && (
           <div className={s.wrapperLoggedMenu}>
-            <Button onClick={onGoToSettings} text="Настройки" />
-            <Button onClick={onGoToCart} text="Заказы" />
-            <Button onClick={handleLogout} text="Выйти" />
+            <Button onClick={onGoToSettings} text="Settings" />
+            <Button onClick={onGoToCart} text="Orders" />
+            <Button onClick={handleLogout} text="Logout" />
           </div>
         )}
         <CartButton

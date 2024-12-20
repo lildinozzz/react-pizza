@@ -104,11 +104,7 @@ export const SideFilters = () => {
         onChange={handleDoughChange}
       />
 
-      <Button
-        onClick={handleSubmit}
-        className={s.buttonSubmit}
-        text="Применить"
-      />
+      <Button onClick={handleSubmit} className={s.buttonSubmit} text="Apply" />
     </div>
   );
 };

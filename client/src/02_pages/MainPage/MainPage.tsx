@@ -1,4 +1,4 @@
-import { Header, Navbar, SideFilters } from "@widgets/index";
+import { Header, SideFilters } from "@widgets/index";
 import s from "./style.module.scss";
 import { useEffect } from "react";
 import { ProductList } from "@features/products/components/product-list";
@@ -24,7 +24,6 @@ export const MainPage = () => {
 
   return (
     <div className={s.wrapper}>
-      <Navbar />
       {!isMobile && <Header />}
       <div className={s.wrapperContent}>
         <SideFilters />

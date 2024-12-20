@@ -4,24 +4,25 @@ import { createModalHook, Modal, TModalProps } from "@shared/modal";
 import cn from "classnames";
 import { useState } from "react";
 import { Button } from "@app/components";
+import { CloseIcon } from "@shared/icons";
 
 type TProductModalProps = TModalProps & {
   product: TProduct;
 };
 
-const sizes = ["Маленькая", "Средняя", "Большая"];
-const dough = ["Традиционное", "Тонкое"];
+const sizes = ["Small", "Medium", "Large"];
+const dough = ["Traditional", "Thin"];
 
-const AuthModal = ({ onClose, product }: TProductModalProps) => {
-  const [currentTabSize, setCurrentTabSize] = useState("Маленькая");
-  const [currentTabDough, setCurrentTabDough] = useState("Традиционное");
+const ProductModal = ({ onClose, product }: TProductModalProps) => {
+  const [currentTabSize, setCurrentTabSize] = useState("Small");
+  const [currentTabDough, setCurrentTabDough] = useState("Traditional");
 
   const renderButtonText = () => {
-    if (currentTabSize === "Маленькая") return product.prices[0];
+    if (currentTabSize === "Small") return product.prices[0];
 
-    if (currentTabSize === "Средняя") return product.prices[1];
+    if (currentTabSize === "Medium") return product.prices[1];
 
-    if (currentTabSize === "Большая") return product.prices[2];
+    if (currentTabSize === "Large") return product.prices[2];
   };
 
   const buttonText = renderButtonText();
@@ -30,13 +31,14 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
     <Modal.Root>
       <Modal.Content onClose={onClose}>
         <div className={s.wrapper}>
+          <CloseIcon onClick={onClose} className={s.wrapperCloseIcon} />
           <div className={s.wrapperLeft}>
             <img
               src={product.imageUrl}
               alt={product.name}
               className={cn(s.pizzaImage, {
-                [s.pizzaImageMedium]: currentTabSize === "Средняя",
-                [s.pizzaImageLarge]: currentTabSize === "Большая",
+                [s.pizzaImageMedium]: currentTabSize === "Medium",
+                [s.pizzaImageLarge]: currentTabSize === "Large",
               })}
             />
             <div className={s.wrapperLeftContainerMedium}></div>
@@ -78,13 +80,13 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
               </div>
             </div>
             <div className={s.wrapperRightSelect}>
-              <div className={s.wrapperRightSelectTitle}>Добавить по вкусу</div>
+              <div className={s.wrapperRightSelectTitle}>Add to your taste</div>
 
               <div className={s.wrapperRightSelectCarousel}>
                 <div className={s.wrapperRightSelectIngredient}>
                   <img src={product.imageUrl} alt={product.name} />
                   <div className={s.wrapperRightSelectIngredientDescription}>
-                    Сливочная моцарелла
+                    Creamy Mozzarella
                   </div>
                   <div className={s.wrapperRightSelectIngredientPrice}>
                     79 ₽
@@ -93,7 +95,7 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
                 <div className={s.wrapperRightSelectIngredient}>
                   <img src={product.imageUrl} alt={product.name} />
                   <div className={s.wrapperRightSelectIngredientDescription}>
-                    Сливочная моцарелла
+                    Creamy Mozzarella
                   </div>
                   <div className={s.wrapperRightSelectIngredientPrice}>
                     79 ₽
@@ -102,7 +104,7 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
                 <div className={s.wrapperRightSelectIngredient}>
                   <img src={product.imageUrl} alt={product.name} />
                   <div className={s.wrapperRightSelectIngredientDescription}>
-                    Сливочная моцарелла
+                    Creamy Mozzarella
                   </div>
                   <div className={s.wrapperRightSelectIngredientPrice}>
                     79 ₽
@@ -112,7 +114,7 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
                 <div className={s.wrapperRightSelectIngredient}>
                   <img src={product.imageUrl} alt={product.name} />
                   <div className={s.wrapperRightSelectIngredientDescription}>
-                    Сливочная моцарелла
+                    Creamy Mozzarella
                   </div>
                   <div className={s.wrapperRightSelectIngredientPrice}>
                     79 ₽
@@ -122,7 +124,7 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
             </div>
             <Button
               className={s.buttonSubmit}
-              text={`Добавить в корзину за ${buttonText}₽`}
+              text={`Add to Cart for ${buttonText}₽`}
             />
           </div>
         </div>
@@ -132,5 +134,5 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
 };
 
 export const useProductModal = createModalHook<TProductModalProps>((props) => (
-  <AuthModal {...props} />
+  <ProductModal {...props} />
 ));

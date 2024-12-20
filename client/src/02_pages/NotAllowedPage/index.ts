@@ -1,1 +1,0 @@
-export { NotAllowedPage } from "./NotAllowedPage";

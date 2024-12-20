@@ -3,16 +3,12 @@
 
 .wrapper {
   position: sticky;
-  top: 85px;
+  top: 98px;
   align-self: flex-start;
   width: 300px;
 
   &PizzaTitle {
     @include typography.title-header;
-  }
-
-  @include media.mobile {
-    top: 65px;
   }
 }
 

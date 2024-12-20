@@ -21,13 +21,13 @@ export const ProductList: React.FC = () => {
         <div className={s.wrapperEmpty}>
           <div className={s.wrapperEmptyMeta}>
             <div className={s.wrapperEmptyMetaTitle}>
-              К сожалению, мы не нашли пиццы по вашим фильтрам
+              Unfortunately, we couldn't find any pizzas matching your filters
             </div>
 
-            <p>Попробуйте изменить фильтры или попробовать позже</p>
+            <p>Try adjusting the filters or check back later</p>
           </div>
 
-          <img src="/images/products-empty.png" />
+          <img src="/images/products-empty.png" alt="No products found" />
         </div>
       )}
     </>
