@@ -20,7 +20,7 @@ export const PriceFilter = ({
 
   return (
     <>
-      <div className={s.title}>Цена от и до:</div>
+      <div className={s.title}>Price from and to:</div>
 
       <div className={s.wrapper}>
         <NumberInput

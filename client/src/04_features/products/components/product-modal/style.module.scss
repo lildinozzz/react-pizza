@@ -10,6 +10,13 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
+  &CloseIcon {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+  }
+
   &Left {
     display: flex;
     align-items: center;
@@ -60,7 +67,11 @@
       &Carousel {
         display: flex;
         gap: 45px;
-        overflow-x: auto;
+        overflow-y: scroll;
+
+        img {
+          width: 120px;
+        }
       }
 
       &Ingredient {
@@ -79,11 +90,6 @@
         &Price {
           text-align: center;
           @include typography.title-m-button;
-        }
-
-        img {
-          width: 110px;
-          height: 110px;
         }
       }
     }
@@ -145,11 +151,11 @@
 
 .pizzaImage {
   z-index: 5;
-  width: 360px;
+  width: 380px;
   transition: width 0.5s ease, height 0.5s ease;
 
   &Medium {
-    width: 440px;
+    width: 450px;
   }
 
   &Large {
@@ -162,20 +168,55 @@
     grid-template-columns: 370px 370px;
 
     &Left {
-      img {
-        width: 200px;
-        height: 200px;
-      }
-
-      &ContainerMiddle {
-        width: 230px;
-        height: 230px;
+      &ContainerMedium {
+        width: 290px;
+        height: 290px;
       }
 
       &ContainerLarge {
-        width: 300px;
-        height: 300px;
+        width: 320px;
+        height: 320px;
       }
+    }
+  }
+
+  .pizzaImage {
+    width: 350px;
+
+    &Medium {
+      width: 390px;
+    }
+    &Large {
+      width: 430px;
+    }
+  }
+}
+
+@include media.mobile {
+  .wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+
+    &CloseIcon {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+    }
+
+    &Left {
+      height: 350px;
+      border-top-left-radius: unset;
+      border-bottom-left-radius: unset;
+    }
+
+    &Right {
+      border-top-right-radius: unset;
+      border-bottom-right-radius: unset;
     }
   }
 }

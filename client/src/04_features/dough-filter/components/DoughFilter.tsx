@@ -13,14 +13,14 @@ export const DoughFilter = ({ selectedValue, onChange }: TDoughFilter) => {
 
       <div className={s.wrapper}>
         <CheckboxRadio
-          text="Традиционное"
+          text="Traditional"
           name="traditional"
           value="traditional"
           selectedValue={selectedValue}
           onChange={onChange}
         />
         <CheckboxRadio
-          text="Тонкое"
+          text="Thin"
           name="thin"
           value="thin"
           selectedValue={selectedValue}

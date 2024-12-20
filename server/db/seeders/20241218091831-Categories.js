@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const categoryNames = ['Все', 'Мясные', 'Острые', 'Сладкие', 'Вегетарианские', 'С курицей'];
+    const categoryNames = ['All', 'Meat', 'Spicy', 'Sweet', 'Vegetarian', 'With Chicken'];
 
     const categories = categoryNames.map((name) => ({
       name: name,

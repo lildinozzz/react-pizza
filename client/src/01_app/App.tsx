@@ -9,6 +9,8 @@ import { refreshAuth } from "./store/reducers/user-info/reducers";
 import { SettingsPage } from "@pages/SettingsPage";
 import PrivateRouter from "./HOC/PrivateRouter";
 import { userInfoSelectors } from "./store/reducers/user-info/selectors";
+import Root from "./Root";
+import { pathsConfig } from "../../config/paths/paths";
 
 export const App = () => {
   const dispatch = useAppDispatch();
@@ -26,11 +28,13 @@ export const App = () => {
 
   const router = createBrowserRouter([
     {
+      path: pathsConfig.home.link,
+      element: <Root />,
       errorElement: <NotFoundPage />,
       children: [
-        { path: "/", element: <MainPage /> },
+        { path: pathsConfig.home.link, element: <MainPage /> },
         {
-          path: "/settings",
+          path: pathsConfig.settings.link,
           element: (
             <PrivateRouter isAllowed={isAuthed}>
               <SettingsPage />

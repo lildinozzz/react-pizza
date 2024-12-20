@@ -10,7 +10,6 @@ import {
 } from "@shared/icons";
 import { useState } from "react";
 import { setCurrentCartCounter } from "@app/store/reducers/product-info/dispatchers";
-import cn from "classnames";
 import { useProductModal } from "../product-modal";
 
 type TProductCardProps = {
@@ -18,8 +17,7 @@ type TProductCardProps = {
 };
 
 export const ProductCard = ({ product }: TProductCardProps) => {
-  const { imageUrl, name, ingredients, prices, isConstructor, productCount } =
-    product;
+  const { imageUrl, name, ingredients, prices, isConstructor } = product;
   const [cartCounter, setCartCounter] = useState(0);
   const [productModal] = useProductModal();
 
@@ -28,9 +26,9 @@ export const ProductCard = ({ product }: TProductCardProps) => {
     .join(", ");
 
   const buttonTextComputed = () => {
-    if (isConstructor) return "Собрать";
+    if (isConstructor) return "Build";
 
-    return "Добавить";
+    return "Add";
   };
 
   const handleAddToCart = () => {
@@ -60,25 +58,19 @@ export const ProductCard = ({ product }: TProductCardProps) => {
   const renderIcon = buttonIconComputed();
 
   return (
-    <div
-      className={cn(s.wrapperCard, { [s.wrapperCardBlocked]: !productCount })}
-    >
+    <div className={s.wrapperCard}>
       {isConstructor && <ConstructorIcon className={s.wrapperCardIcon} />}
 
-      <img src={imageUrl} alt={name} />
+      <img className={s.wrapperCardImage} src={imageUrl} alt={name} />
 
       <div className={s.wrapperCardTitle}>{name}</div>
 
       <p className={s.wrapperCardIngredients}>{filteredIngredients}</p>
 
-      {!productCount && (
-        <Button text="Нет в наличии" className={s.wrapperCardBlockedInfo} />
-      )}
-
       <div className={s.wrapperCardBottom}>
         <span>
-          от
-          <span className={s.wrapperCardBottomPrice}> {prices[0]} ₽</span>
+          from
+          <span className={s.wrapperCardBottomPrice}> {prices[0]} $</span>
         </span>
         <div className={s.wrapperCardBottomActions}>
           {!cartCounter && (

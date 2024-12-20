@@ -8,15 +8,19 @@ type TOptionsFilter = {
 export const OptionsFilter = ({ handleCheckboxChange }: TOptionsFilter) => {
   return (
     <>
-      <div className={s.title}>Фильтрация</div>
+      <div className={s.title}>Filtering</div>
 
       <div className={s.wrapper}>
         <Checkbox
           onChange={handleCheckboxChange}
           name="isConstructor"
-          text="Можно собирать"
+          text="Customizable"
         />
-        <Checkbox onChange={handleCheckboxChange} name="isNew" text="Новинки" />
+        <Checkbox
+          onChange={handleCheckboxChange}
+          name="isNew"
+          text="New Arrivals"
+        />
       </div>
     </>
   );

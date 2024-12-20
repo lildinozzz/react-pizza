@@ -3,12 +3,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const ingredients = [
-      { name: 'Сырный соус', value: 'cheese_sauce' },
-      { name: 'Чеснок', value: 'garlic' },
-      { name: 'Солённые огурчики', value: 'pickles' },
-      { name: 'Томаты', value: 'tomatoes' },
-      { name: 'Красный лук', value: 'red_onion' },
-      { name: 'Моцарелла', value: 'mozzarella' },
+      { name: 'Cheese Sauce', value: 'cheese_sauce' },
+      { name: 'Garlic', value: 'garlic' },
+      { name: 'Pickles', value: 'pickles' },
+      { name: 'Tomatoes', value: 'tomatoes' },
+      { name: 'Red Onion', value: 'red_onion' },
+      { name: 'Mozzarella', value: 'mozzarella' },
     ];
 
     await queryInterface.bulkInsert(
@@ -23,7 +23,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    // Откатываем изменения, удаляя все ингредиенты
+    // Revert changes by deleting all ingredients
     await queryInterface.bulkDelete('Ingredients', null, {});
   },
 };

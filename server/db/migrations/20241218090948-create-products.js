@@ -10,6 +10,10 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       prices: {
         type: Sequelize.ARRAY(Sequelize.STRING),
         allowNull: false,
@@ -24,14 +28,6 @@ module.exports = {
       },
       isConstructor: {
         type: Sequelize.BOOLEAN,
-      },
-      productCount: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       isNew: {
         type: Sequelize.BOOLEAN,

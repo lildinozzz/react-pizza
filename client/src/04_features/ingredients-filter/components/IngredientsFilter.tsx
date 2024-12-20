@@ -14,7 +14,7 @@ export const IngredientsFilter = ({
 
   return (
     <>
-      <div className={s.title}>Ингредиенты: </div>
+      <div className={s.title}>Ingredients: </div>
       <div className={s.wrapper}>
         {ingredients.map((ingredient) => {
           const { id, name, value } = ingredient;
