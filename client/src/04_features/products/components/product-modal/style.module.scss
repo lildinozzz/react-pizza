@@ -19,24 +19,19 @@
     border-bottom-left-radius: 30px;
     border-top-left-radius: 30px;
 
-    img {
-      width: 300px;
-      height: 300px;
-    }
-
-    &ContainerMiddle {
+    &ContainerMedium {
       position: absolute;
       border-style: dotted;
-      height: 350px;
-      width: 350px;
+      height: 330px;
+      width: 330px;
       border-radius: 400px;
       border: 2px dashed var(--border-color-grey);
     }
 
     &ContainerLarge {
       position: absolute;
-      height: 430px;
-      width: 430px;
+      height: 390px;
+      width: 390px;
       border-radius: 400px;
       border: 2px dashed var(--border-color-grey);
     }
@@ -50,7 +45,7 @@
     background: var(--main-beige);
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
-    padding: 40px;
+    padding: 30px 40px;
 
     &Select {
       margin-top: 15px;
@@ -60,6 +55,36 @@
       &Title {
         @include typography.title-h3;
         font-weight: 700;
+      }
+
+      &Carousel {
+        display: flex;
+        gap: 45px;
+        overflow-x: auto;
+      }
+
+      &Ingredient {
+        position: relative;
+        width: 130px;
+        height: 193px;
+        background: var(--main-primary);
+        border-radius: 16px;
+        margin-top: 7px;
+
+        &Description {
+          color: var(--text-color-grey);
+          text-align: center;
+        }
+
+        &Price {
+          text-align: center;
+          @include typography.title-m-button;
+        }
+
+        img {
+          width: 110px;
+          height: 110px;
+        }
       }
     }
 
@@ -111,6 +136,27 @@
   }
 }
 
+.buttonSubmit {
+  background: var(--button-color-orange);
+  color: var(--main-primary);
+  width: 100%;
+  @include typography.title-l-regular;
+}
+
+.pizzaImage {
+  z-index: 5;
+  width: 360px;
+  transition: width 0.5s ease, height 0.5s ease;
+
+  &Medium {
+    width: 440px;
+  }
+
+  &Large {
+    width: 535px;
+  }
+}
+
 @include media.tablet {
   .wrapper {
     grid-template-columns: 370px 370px;
@@ -132,11 +178,4 @@
       }
     }
   }
-}
-
-.buttonSubmit {
-  background: var(--button-color-orange);
-  color: var(--main-primary);
-  width: 100%;
-  @include typography.title-l-regular;
 }

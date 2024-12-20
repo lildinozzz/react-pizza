@@ -1,15 +1,18 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useEffect } from "react";
 import { useMediaQuery } from "@hooks/index";
 import { commonUiConfig } from "../../config/commonUI/commonUIConfig";
 import { setIsMobile } from "./store/reducers/common-ui/dispatchers";
 import { MainPage, NotFoundPage } from "@pages/index";
-import { useAppDispatch } from "./store/hooks";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { refreshAuth } from "./store/reducers/user-info/reducers";
-import { ToastContainer } from "react-toastify";
+import { SettingsPage } from "@pages/SettingsPage";
+import PrivateRouter from "./HOC/PrivateRouter";
+import { userInfoSelectors } from "./store/reducers/user-info/selectors";
 
 export const App = () => {
   const dispatch = useAppDispatch();
+  const { isAuthed } = useAppSelector(userInfoSelectors.userInfo);
   const mobile = useMediaQuery("max-width", commonUiConfig.mediaSmallWidth);
 
   useEffect(() => {
@@ -21,14 +24,22 @@ export const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+  const router = createBrowserRouter([
+    {
+      errorElement: <NotFoundPage />,
+      children: [
+        { path: "/", element: <MainPage /> },
+        {
+          path: "/settings",
+          element: (
+            <PrivateRouter isAllowed={isAuthed}>
+              <SettingsPage />
+            </PrivateRouter>
+          ),
+        },
+      ],
+    },
+  ]);
 
-      <ToastContainer />
-    </Router>
-  );
+  return <RouterProvider router={router} />;
 };

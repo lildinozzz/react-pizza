@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import s from "./style.module.scss";
 import PizzaImage from "/images/navbar-pizza-image.png";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
@@ -22,6 +22,7 @@ export const Navbar = () => {
   );
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authModal] = useAuthModal();
+  const navigate = useNavigate();
 
   const handleStartAuth = () => {
     if (isAuthed) {
@@ -35,6 +36,12 @@ export const Navbar = () => {
   const handleLogout = () => {
     dispatch(logout());
   };
+
+  const onGoToSettings = () => {
+    navigate("/settings");
+  };
+
+  const onGoToCart = () => {};
 
   const renderButtonText = (): string => {
     if (isMobile) return "";
@@ -76,8 +83,8 @@ export const Navbar = () => {
         />
         {isMenuOpen && isAuthed && (
           <div className={s.wrapperLoggedMenu}>
-            <Button text="Настройки" />
-            <Button text="Заказы" />
+            <Button onClick={onGoToSettings} text="Настройки" />
+            <Button onClick={onGoToCart} text="Заказы" />
             <Button onClick={handleLogout} text="Выйти" />
           </div>
         )}

@@ -16,6 +16,16 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
   const [currentTabSize, setCurrentTabSize] = useState("Маленькая");
   const [currentTabDough, setCurrentTabDough] = useState("Традиционное");
 
+  const renderButtonText = () => {
+    if (currentTabSize === "Маленькая") return product.prices[0];
+
+    if (currentTabSize === "Средняя") return product.prices[1];
+
+    if (currentTabSize === "Большая") return product.prices[2];
+  };
+
+  const buttonText = renderButtonText();
+
   return (
     <Modal.Root>
       <Modal.Content onClose={onClose}>
@@ -24,9 +34,12 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
             <img
               src={product.imageUrl}
               alt={product.name}
-              className={s.pizzaImage}
+              className={cn(s.pizzaImage, {
+                [s.pizzaImageMedium]: currentTabSize === "Средняя",
+                [s.pizzaImageLarge]: currentTabSize === "Большая",
+              })}
             />
-            <div className={s.wrapperLeftContainerMiddle}></div>
+            <div className={s.wrapperLeftContainerMedium}></div>
             <div className={s.wrapperLeftContainerLarge}></div>
           </div>
           <div className={s.wrapperRight}>
@@ -66,10 +79,50 @@ const AuthModal = ({ onClose, product }: TProductModalProps) => {
             </div>
             <div className={s.wrapperRightSelect}>
               <div className={s.wrapperRightSelectTitle}>Добавить по вкусу</div>
+
+              <div className={s.wrapperRightSelectCarousel}>
+                <div className={s.wrapperRightSelectIngredient}>
+                  <img src={product.imageUrl} alt={product.name} />
+                  <div className={s.wrapperRightSelectIngredientDescription}>
+                    Сливочная моцарелла
+                  </div>
+                  <div className={s.wrapperRightSelectIngredientPrice}>
+                    79 ₽
+                  </div>
+                </div>
+                <div className={s.wrapperRightSelectIngredient}>
+                  <img src={product.imageUrl} alt={product.name} />
+                  <div className={s.wrapperRightSelectIngredientDescription}>
+                    Сливочная моцарелла
+                  </div>
+                  <div className={s.wrapperRightSelectIngredientPrice}>
+                    79 ₽
+                  </div>
+                </div>
+                <div className={s.wrapperRightSelectIngredient}>
+                  <img src={product.imageUrl} alt={product.name} />
+                  <div className={s.wrapperRightSelectIngredientDescription}>
+                    Сливочная моцарелла
+                  </div>
+                  <div className={s.wrapperRightSelectIngredientPrice}>
+                    79 ₽
+                  </div>
+                </div>
+
+                <div className={s.wrapperRightSelectIngredient}>
+                  <img src={product.imageUrl} alt={product.name} />
+                  <div className={s.wrapperRightSelectIngredientDescription}>
+                    Сливочная моцарелла
+                  </div>
+                  <div className={s.wrapperRightSelectIngredientPrice}>
+                    79 ₽
+                  </div>
+                </div>
+              </div>
             </div>
             <Button
               className={s.buttonSubmit}
-              text="Добавить в корзину за 554$"
+              text={`Добавить в корзину за ${buttonText}₽`}
             />
           </div>
         </div>
