@@ -52,11 +52,9 @@ export const SideFilters = () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       Object.entries(formState).filter(([key, value]) => value)
     );
-
     const queryString = new URLSearchParams(
       filteredFormState as Record<string, string>
     ).toString();
-
     dispatch(getAllProductsByQuery(queryString));
   };
 

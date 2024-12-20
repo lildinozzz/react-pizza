@@ -22,6 +22,7 @@ export type TProduct = {
   ingredients: string[];
   dough: "traditional" | "thin";
   isConstructor: boolean;
+  isNew: boolean;
   name: string;
   imageUrl: string;
 };

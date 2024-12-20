@@ -117,14 +117,14 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
                     Creamy Mozzarella
                   </div>
                   <div className={s.wrapperRightSelectIngredientPrice}>
-                    79 ₽
+                    79 $
                   </div>
                 </div>
               </div>
             </div>
             <Button
               className={s.buttonSubmit}
-              text={`Add to Cart for ${buttonText}₽`}
+              text={`Add to Cart for ${buttonText} $`}
             />
           </div>
         </div>
