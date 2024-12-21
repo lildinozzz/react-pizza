@@ -68,14 +68,17 @@
       &Carousel {
         display: flex;
         gap: 30px;
-        overflow-y: scroll;
+        overflow-x: scroll;
+        overflow-y: hidden;
 
         img {
-          width: 120px;
+          width: 100px;
         }
       }
 
       &Ingredient {
+        display: flex;
+        flex-direction: column;
         position: relative;
         background: var(--main-primary);
         border: 2px solid var(--main-primary);
@@ -91,9 +94,19 @@
           }
         }
 
+        &Meta {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          bottom: 5px;
+        }
+
         &Description {
-          color: var(--text-color-grey);
           text-align: center;
+          @include typography.title-s-button;
         }
 
         &Price {

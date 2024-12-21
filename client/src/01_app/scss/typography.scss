@@ -39,3 +39,8 @@
 @mixin title-m-button {
   @include font-style(16px, 600, 21px);
 }
+
+@mixin title-s-button {
+  @include font-style(12px, 400, 16px);
+}
+

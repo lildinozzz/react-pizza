@@ -3,12 +3,12 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const ingredients = [
-      { name: 'Cheese Sauce', value: 'cheese_sauce', price: '1' },
-      { name: 'Garlic', value: 'garlic', price: '1' },
-      { name: 'Pickles', value: 'pickles', price: '1' },
+      { name: 'Cheese Sauce', value: 'cheese-sauce', price: '1' },
+      { name: 'Cheese Crust', value: 'cheese-crust', price: '1' },
+      { name: 'Creamy Mozzarella', value: 'creamy-mozzarella', price: '1' },
       { name: 'Tomatoes', value: 'tomatoes', price: '2' },
-      { name: 'Red Onion', value: 'red_onion', price: '1' },
-      { name: 'Mozzarella', value: 'mozzarella', price: '2' },
+      { name: 'Red Onion', value: 'red-onion', price: '1' },
+      { name: 'Cheddar and Parmesan', value: 'cheddar-parmesan', price: '2' },
     ];
 
     await queryInterface.bulkInsert(
@@ -17,6 +17,7 @@ module.exports = {
         name: ingredient.name,
         value: ingredient.value,
         price: ingredient.price,
+        imageUrl: `/images/ingredient/${ingredient.value}.png`,
         createdAt: new Date(),
         updatedAt: new Date(),
       })),
