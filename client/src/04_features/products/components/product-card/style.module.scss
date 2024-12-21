@@ -20,14 +20,16 @@
   }
 
   &Title {
-    margin-top: 5px;
+    position: absolute;
+    bottom: 110px;
     @include typography.title-l-regular;
     font-size: 22px;
     font-weight: 500;
   }
 
   &Ingredients {
-    margin-top: 10px;
+    position: absolute;
+    top: 77%;
     color: #b1b1b1;
     font-size: 14px;
   }

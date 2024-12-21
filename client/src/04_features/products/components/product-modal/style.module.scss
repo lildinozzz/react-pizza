@@ -62,11 +62,12 @@
       &Title {
         @include typography.title-h3;
         font-weight: 700;
+        margin-bottom: 5px;
       }
 
       &Carousel {
         display: flex;
-        gap: 45px;
+        gap: 30px;
         overflow-y: scroll;
 
         img {
@@ -76,11 +77,19 @@
 
       &Ingredient {
         position: relative;
-        width: 130px;
-        height: 193px;
         background: var(--main-primary);
+        border: 2px solid var(--main-primary);
         border-radius: 16px;
-        margin-top: 7px;
+        height: 193px;
+
+        &Active {
+          border: 2px solid var(--button-color-orange);
+          &Icon {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+          }
+        }
 
         &Description {
           color: var(--text-color-grey);
