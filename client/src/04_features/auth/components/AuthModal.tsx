@@ -93,8 +93,8 @@ const AuthModal = ({ onClose }: TModalProps) => {
           <CloseIcon onClick={onClose} className={s.modalCloseIcon} />
           <div className={s.modalHeader}>
             <div className={s.modalHeaderTitle}>
-              Вход в аккаунт
-              <p>Введите почту, чтобы войти или зарегистрироваться</p>
+              Login
+              <p>Enter your email to login or register</p>
             </div>
             <img
               className={s.modalHeaderImage}

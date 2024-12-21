@@ -5,27 +5,67 @@ import cn from "classnames";
 import { useState } from "react";
 import { Button } from "@app/components";
 import { CloseIcon } from "@shared/icons";
+import { ActiveIngredientCartIcon } from "@shared/icons/ActiveIngredientCartIcon";
+import { useAppSelector } from "@app/store/hooks";
+import { productInfoSelectors } from "@app/store/reducers/product-info/selectors";
+
+enum ESizeVariants {
+  Small = "Small",
+  Medium = "Medium",
+  Large = "Large",
+}
+
+enum EDoughVariants {
+  Traditional = "Traditional",
+  Thin = "Thin",
+}
 
 type TProductModalProps = TModalProps & {
   product: TProduct;
 };
 
-const sizes = ["Small", "Medium", "Large"];
-const dough = ["Traditional", "Thin"];
-
 const ProductModal = ({ onClose, product }: TProductModalProps) => {
-  const [currentTabSize, setCurrentTabSize] = useState("Small");
-  const [currentTabDough, setCurrentTabDough] = useState("Traditional");
+  const { prices } = product;
+  const { ingredients } = useAppSelector(productInfoSelectors.productInfo);
+  const [currentTabSize, setCurrentTabSize] = useState<ESizeVariants>(
+    ESizeVariants.Small
+  );
+  const [currentTabDough, setCurrentTabDough] = useState<EDoughVariants>(
+    EDoughVariants.Traditional
+  );
 
-  const renderButtonText = () => {
-    if (currentTabSize === "Small") return product.prices[0];
+  const [activeIngredients, setActiveIngredients] = useState<
+    Record<number, boolean>
+  >({});
 
-    if (currentTabSize === "Medium") return product.prices[1];
+  const calculateTotalPrice = () => {
+    let basePrice = 0;
 
-    if (currentTabSize === "Large") return product.prices[2];
+    if (currentTabSize === ESizeVariants.Small) basePrice = Number(prices[0]);
+    if (currentTabSize === ESizeVariants.Medium) basePrice = Number(prices[1]);
+    if (currentTabSize === ESizeVariants.Large) basePrice = Number(prices[2]);
+
+    const ingredientsPrice = ingredients.reduce((acc: number, ingredient) => {
+      const { price, id } = ingredient;
+
+      if (activeIngredients[id]) {
+        return acc + Number(price);
+      }
+
+      return acc;
+    }, 0);
+
+    return basePrice + ingredientsPrice;
   };
 
-  const buttonText = renderButtonText();
+  const handleIngredientClick = (id: number) => {
+    setActiveIngredients((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const totalPrice = calculateTotalPrice();
 
   return (
     <Modal.Root>
@@ -37,8 +77,8 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
               src={product.imageUrl}
               alt={product.name}
               className={cn(s.pizzaImage, {
-                [s.pizzaImageMedium]: currentTabSize === "Medium",
-                [s.pizzaImageLarge]: currentTabSize === "Large",
+                [s.pizzaImageMedium]: currentTabSize === ESizeVariants.Medium,
+                [s.pizzaImageLarge]: currentTabSize === ESizeVariants.Large,
               })}
             />
             <div className={s.wrapperLeftContainerMedium}></div>
@@ -53,9 +93,9 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
             </div>
             <div>
               <div className={s.wrapperRightButtons}>
-                {sizes.map((size, index) => (
+                {Object.values(ESizeVariants).map((size) => (
                   <button
-                    key={index}
+                    key={size}
                     className={cn(s.wrapperRightButton, {
                       [s.wrapperRightButtonActive]: currentTabSize === size,
                     })}
@@ -66,9 +106,9 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
                 ))}
               </div>
               <div className={s.wrapperRightButtons}>
-                {dough.map((dough, index) => (
+                {Object.values(EDoughVariants).map((dough) => (
                   <button
-                    key={index}
+                    key={dough}
                     className={cn(s.wrapperRightButton, {
                       [s.wrapperRightButtonActive]: currentTabDough === dough,
                     })}
@@ -83,48 +123,34 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
               <div className={s.wrapperRightSelectTitle}>Add to your taste</div>
 
               <div className={s.wrapperRightSelectCarousel}>
-                <div className={s.wrapperRightSelectIngredient}>
-                  <img src={product.imageUrl} alt={product.name} />
-                  <div className={s.wrapperRightSelectIngredientDescription}>
-                    Creamy Mozzarella
+                {ingredients.map((ingredient) => (
+                  <div
+                    key={ingredient.id}
+                    className={cn(s.wrapperRightSelectIngredient, {
+                      [s.wrapperRightSelectIngredientActive]:
+                        activeIngredients[ingredient.id],
+                    })}
+                    onClick={() => handleIngredientClick(ingredient.id)}
+                  >
+                    {activeIngredients[ingredient.id] && (
+                      <ActiveIngredientCartIcon
+                        className={s.wrapperRightSelectIngredientActiveIcon}
+                      />
+                    )}
+                    <img src={product.imageUrl} alt={product.name} />
+                    <div className={s.wrapperRightSelectIngredientDescription}>
+                      {ingredient.name}
+                    </div>
+                    <div className={s.wrapperRightSelectIngredientPrice}>
+                      {ingredient.price} $
+                    </div>
                   </div>
-                  <div className={s.wrapperRightSelectIngredientPrice}>
-                    79 ₽
-                  </div>
-                </div>
-                <div className={s.wrapperRightSelectIngredient}>
-                  <img src={product.imageUrl} alt={product.name} />
-                  <div className={s.wrapperRightSelectIngredientDescription}>
-                    Creamy Mozzarella
-                  </div>
-                  <div className={s.wrapperRightSelectIngredientPrice}>
-                    79 ₽
-                  </div>
-                </div>
-                <div className={s.wrapperRightSelectIngredient}>
-                  <img src={product.imageUrl} alt={product.name} />
-                  <div className={s.wrapperRightSelectIngredientDescription}>
-                    Creamy Mozzarella
-                  </div>
-                  <div className={s.wrapperRightSelectIngredientPrice}>
-                    79 ₽
-                  </div>
-                </div>
-
-                <div className={s.wrapperRightSelectIngredient}>
-                  <img src={product.imageUrl} alt={product.name} />
-                  <div className={s.wrapperRightSelectIngredientDescription}>
-                    Creamy Mozzarella
-                  </div>
-                  <div className={s.wrapperRightSelectIngredientPrice}>
-                    79 $
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
             <Button
               className={s.buttonSubmit}
-              text={`Add to Cart for ${buttonText} $`}
+              text={`Add to Cart for ${totalPrice} $`}
             />
           </div>
         </div>
