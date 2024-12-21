@@ -1,4 +1,4 @@
-import { Header, SideFilters } from "@widgets/index";
+import { Header, Sidebar, SideFilters } from "@widgets/index";
 import s from "./style.module.scss";
 import { useEffect } from "react";
 import { ProductList } from "@features/products/components/product-list";
@@ -11,7 +11,7 @@ import {
 } from "@app/store/reducers/product-info/reducers";
 import { useAppDispatch } from "@app/store/hooks";
 export const MainPage = () => {
-  // const { isSidebarOpen } = useSelector(commonUISelectors.commonUIInfo);
+  const { isSidebarOpen } = useSelector(commonUISelectors.commonUIInfo);
   const { isMobile } = useSelector(commonUISelectors.commonUIInfo);
   const dispatch = useAppDispatch();
 
@@ -29,7 +29,7 @@ export const MainPage = () => {
         <SideFilters />
         <ProductList />
       </div>
-      {/* {isSidebarOpen && <Sidebar />} */}
+      {isSidebarOpen && <Sidebar />}
     </div>
   );
 };

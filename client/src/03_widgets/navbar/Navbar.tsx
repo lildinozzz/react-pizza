@@ -38,13 +38,11 @@ export const Navbar = () => {
     dispatch(logout());
   };
 
-  const onGoToSettings = () => {
-    navigate(pathsConfig.settings.link);
+  const onGoToCart = () => {
+    navigate(pathsConfig.payment.link);
 
     setIsMenuOpen(!isMenuOpen);
   };
-
-  const onGoToCart = () => {};
 
   const renderButtonText = (): string => {
     if (isMobile) return "";
@@ -86,7 +84,6 @@ export const Navbar = () => {
         />
         {isMenuOpen && isAuthed && (
           <div className={s.wrapperLoggedMenu}>
-            <Button onClick={onGoToSettings} text="Settings" />
             <Button onClick={onGoToCart} text="Orders" />
             <Button onClick={handleLogout} text="Logout" />
           </div>

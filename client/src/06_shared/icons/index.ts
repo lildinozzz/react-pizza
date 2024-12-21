@@ -11,3 +11,4 @@ export { RemoveFromCartIcon } from "./RemoveFromCartIcon";
 export { AddToCartIcon } from "./AddToCartIcon";
 export { CartActiveIcon } from "./CartActiveIcon";
 export { TopDividerIcon } from "./TopDividerIcon";
+export { ArrowTopBottomIcon } from "./ArrowTopBottomIcon";

@@ -16,7 +16,7 @@ export const IngredientsFilter = ({
     <>
       <div className={s.title}>Ingredients: </div>
       <div className={s.wrapper}>
-        {ingredients.map((ingredient) => {
+        {ingredients.slice(0, 10).map((ingredient) => {
           const { id, name, value } = ingredient;
           return (
             <Checkbox
