@@ -58,6 +58,17 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
     return basePrice + ingredientsPrice;
   };
 
+  const renderDescription = () => {
+    if (currentTabSize === ESizeVariants.Small)
+      return `25 cm, ${currentTabDough} dough, 250 g`;
+
+    if (currentTabSize === ESizeVariants.Medium)
+      return `30 cm, ${currentTabDough} dough, 300 g`;
+
+    if (currentTabSize === ESizeVariants.Large)
+      return `35 cm, ${currentTabDough} dough, 350 g`;
+  };
+
   const handleIngredientClick = (id: number) => {
     setActiveIngredients((prev) => ({
       ...prev,
@@ -66,6 +77,7 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
   };
 
   const totalPrice = calculateTotalPrice();
+  const productDescription = renderDescription();
 
   return (
     <Modal.Root>
@@ -88,7 +100,7 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
             <div className={s.wrapperRightMeta}>
               <div className={s.wrapperRightMetaTitle}>{product.name}</div>
               <div className={s.wrapperRightMetaDescription}>
-                {product.name}
+                {productDescription}
               </div>
             </div>
             <div>
@@ -137,12 +149,16 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
                         className={s.wrapperRightSelectIngredientActiveIcon}
                       />
                     )}
-                    <img src={product.imageUrl} alt={product.name} />
-                    <div className={s.wrapperRightSelectIngredientDescription}>
-                      {ingredient.name}
-                    </div>
-                    <div className={s.wrapperRightSelectIngredientPrice}>
-                      {ingredient.price} $
+                    <img src={ingredient.imageUrl} alt={ingredient.name} />
+                    <div className={s.wrapperRightSelectIngredientMeta}>
+                      <div
+                        className={s.wrapperRightSelectIngredientDescription}
+                      >
+                        {ingredient.name}
+                      </div>
+                      <div className={s.wrapperRightSelectIngredientPrice}>
+                        {ingredient.price} $
+                      </div>
                     </div>
                   </div>
                 ))}

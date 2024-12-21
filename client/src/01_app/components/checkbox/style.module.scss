@@ -10,8 +10,8 @@
 
 .input {
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   background: var(--main-secondary);
   border-radius: 8px;
   position: relative;

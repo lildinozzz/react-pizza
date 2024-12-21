@@ -2,7 +2,6 @@ import s from "./style.module.scss";
 import { Button } from "@components/button";
 import { useAppDispatch, useAppSelector } from "@app/store/hooks";
 import { IngredientsFilter } from "@features/ingredients-filter/components";
-import { PriceFilter } from "@features/price-filter/components";
 import { DoughFilter } from "@features/dough-filter/components";
 import { OptionsFilter } from "@features/options-filter/components/OptionsFilter";
 import { useState } from "react";
@@ -58,30 +57,9 @@ export const SideFilters = () => {
     dispatch(getAllProductsByQuery(queryString));
   };
 
-  const handleFromChange = (value: string) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      from: value,
-    }));
-  };
-
-  const handleToChange = (value: string) => {
-    setFormState((prevState) => ({
-      ...prevState,
-      to: value,
-    }));
-  };
-
   return (
     <div className={s.wrapper}>
       <OptionsFilter handleCheckboxChange={handleCheckboxChange} />
-
-      <div className={s.divider}></div>
-
-      <PriceFilter
-        onFromChange={handleFromChange}
-        onToChange={handleToChange}
-      />
 
       {isMobile && (
         <>
