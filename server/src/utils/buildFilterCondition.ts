@@ -1,17 +1,27 @@
 export const buildFilterCondition = (query: Record<string, unknown>) => {
   const filterCondition: Record<string, unknown> = {};
+  const ingredientFilters: Record<string, any> = {};
 
-  if (query.dough) {
-    filterCondition.dough = query.dough;
+  const { dough, isNew, isConstructor, ...ingredients } = query;
+
+  if (dough) {
+    filterCondition.dough = dough;
   }
 
-  if (query.isNew) {
-    filterCondition.isNew = query.isNew === 'true';
+  if (isNew) {
+    filterCondition.isNew = isNew === 'true';
   }
 
-  if (query.isConstructor) {
-    filterCondition.isConstructor = query.isConstructor === 'true';
+  if (isConstructor) {
+    filterCondition.isConstructor = isConstructor === 'true';
   }
 
-  return filterCondition;
+  Object.keys(ingredients).forEach((key) => {
+    if (ingredients[key] === 'true') {
+      ingredientFilters.value = ingredientFilters.value || [];
+      ingredientFilters.value.push(key);
+    }
+  });
+
+  return { filterCondition, ingredientFilters };
 };

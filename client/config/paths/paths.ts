@@ -6,6 +6,8 @@ export interface IRoute {
 export interface IPathsConfig {
   home: IRoute;
   payment: IRoute;
+  orders: IRoute;
+  menu: IRoute;
 }
 
 export const pathsConfig: IPathsConfig = {
@@ -17,5 +19,15 @@ export const pathsConfig: IPathsConfig = {
   payment: {
     key: "payment",
     link: "/payment",
+  },
+
+  orders: {
+    key: "orders",
+    link: "orders",
+  },
+
+  menu: {
+    key: "menu",
+    link: "menu",
   },
 };

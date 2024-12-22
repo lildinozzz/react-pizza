@@ -8,7 +8,7 @@
 
 .wrapper {
   margin-top: 20px;
-  max-width: 650px;
+  width: 470px;
   height: 55px;
   display: flex;
   border-radius: 16px;
@@ -42,12 +42,12 @@
 
 @include media.mobile {
   .wrapper {
+    max-width: 270px;
     padding: 10px 20px;
-    height: 350px;
+    height: 270px;
     flex-direction: column;
 
     &Button {
-      height: 100%;
       width: 100%;
     }
   }

@@ -19,11 +19,20 @@ productsRouter.get('/', async (req: Request, res: Response) => {
 });
 
 productsRouter.get('/filter', async (req: Request, res: Response) => {
-  try {
-    const filterCondition = buildFilterCondition(req.query);
+  const { filterCondition, ingredientFilters } = buildFilterCondition(req.query);
 
-    const products: TProduct[] = await Product.findAll({
+  try {
+    const products = await Product.findAll({
       where: filterCondition,
+      include: [
+        {
+          model: Ingredient,
+          through: { attributes: [] },
+          required: true,
+          as: 'productIngredients',
+          where: ingredientFilters,
+        },
+      ],
     });
 
     if (products.length === 0) {
@@ -39,13 +48,13 @@ productsRouter.get('/filter', async (req: Request, res: Response) => {
 });
 
 productsRouter.get('/search', async (req: Request, res: Response) => {
-  const { name } = req.query;
+  const { query } = req.query;
 
   try {
     const products = await Product.findAll({
       where: {
         name: {
-          [Op.iLike]: `%${name}%`,
+          [Op.iLike]: `%${query}%`,
         },
       },
     });

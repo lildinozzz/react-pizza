@@ -3,7 +3,13 @@ import { useEffect } from "react";
 import { useMediaQuery } from "@hooks/index";
 import { commonUiConfig } from "../../config/commonUI/commonUIConfig";
 import { setIsMobile } from "./store/reducers/common-ui/dispatchers";
-import { MainPage, NotFoundPage, PaymentPage } from "@pages/index";
+import {
+  MainPage,
+  NotFoundPage,
+  PaymentPage,
+  OrdersPage,
+  MenuPage,
+} from "@pages/index";
 import { useAppDispatch } from "./store/hooks";
 import { refreshAuth } from "./store/reducers/user-info/reducers";
 import Root from "./Root";
@@ -30,6 +36,8 @@ export const App = () => {
       children: [
         { path: pathsConfig.home.link, element: <MainPage /> },
         { path: pathsConfig.payment.link, element: <PaymentPage /> },
+        { path: pathsConfig.orders.link, element: <OrdersPage /> },
+        { path: pathsConfig.menu.link, element: <MenuPage /> },
       ],
     },
   ]);

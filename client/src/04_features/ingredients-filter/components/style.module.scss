@@ -9,3 +9,13 @@
   margin-top: 20px;
   @include typography.title-l-regular;
 }
+
+.showMoreButton {
+  display: flex;
+  justify-content: flex-start;
+  color: var(--button-color-orange);
+  margin-top: 5px;
+  width: 100%;
+  border: unset;
+  @include typography.title-m-regular;
+}

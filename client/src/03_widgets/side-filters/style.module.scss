@@ -10,6 +10,34 @@
   &PizzaTitle {
     @include typography.title-header;
   }
+
+  &SortButton {
+    margin-top: 20px;
+    position: relative;
+    width: 240px;
+    height: 55px;
+    background: var(--main-secondary);
+    border: none;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+
+    &Icon {
+      position: absolute;
+      left: 13px;
+    }
+
+    &Title,
+    &Type {
+      @include typography.title-m-regular;
+    }
+
+    &Type {
+      color: var(--button-color-orange);
+    }
+  }
 }
 
 .divider {

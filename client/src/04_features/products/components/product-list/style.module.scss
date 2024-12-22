@@ -10,12 +10,8 @@
   justify-items: center;
 
   @include media.tablet {
+    height: 300px;
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include media.mobile {
-    grid-template-columns: 1fr;
-    padding-right: 30px;
   }
 
   &Empty {

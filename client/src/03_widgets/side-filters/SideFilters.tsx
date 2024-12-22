@@ -9,6 +9,7 @@ import { productInfoSelectors } from "@app/store/reducers/product-info/selectors
 import { getAllProductsByQuery } from "@app/store/reducers/product-info/reducers";
 import { CategoryFilter } from "@features/category-filter/components";
 import { commonUISelectors } from "@app/store/reducers/common-ui/selectors";
+import { ArrowTopBottomIcon } from "@shared/icons";
 
 export const SideFilters = () => {
   const dispatch = useAppDispatch();
@@ -63,6 +64,14 @@ export const SideFilters = () => {
 
       {isMobile && (
         <>
+          <div className={s.divider}></div>
+
+          <button className={s.wrapperSortButton}>
+            <ArrowTopBottomIcon className={s.wrapperSortButtonIcon} />
+            <span className={s.wrapperSortButtonTitle}>Сортировка:</span>
+            <span className={s.wrapperSortButtonType}>рейтингу</span>
+          </button>
+
           <div className={s.divider}></div>
 
           <CategoryFilter />

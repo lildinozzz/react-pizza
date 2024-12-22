@@ -2,15 +2,13 @@ import { TProduct } from "@shared/types/types";
 import s from "./style.module.scss";
 import { Button } from "@app/components";
 import {
-  AddToCartIcon,
   CartButtonIcon,
   ConstructorButtonIcon,
   ConstructorIcon,
-  RemoveFromCartIcon,
 } from "@shared/icons";
-import { useState } from "react";
-import { setCurrentCartCounter } from "@app/store/reducers/product-info/dispatchers";
 import { useProductModal } from "../product-modal";
+import { useNavigate } from "react-router-dom";
+import { pathsConfig } from "../../../../../config/paths/paths";
 
 type TProductCardProps = {
   product: TProduct;
@@ -18,8 +16,8 @@ type TProductCardProps = {
 
 export const ProductCard = ({ product }: TProductCardProps) => {
   const { imageUrl, name, ingredients, prices, isConstructor } = product;
-  const [cartCounter, setCartCounter] = useState(0);
   const [productModal] = useProductModal();
+  const navigate = useNavigate();
 
   const filteredIngredients = ingredients
     .map((ingredient) => ingredient.trim())
@@ -31,15 +29,6 @@ export const ProductCard = ({ product }: TProductCardProps) => {
     return "Add";
   };
 
-  const handleAddToCart = () => {
-    setCartCounter((prev) => prev + 1);
-    setCurrentCartCounter((prev) => prev + 1);
-  };
-  const handleRemoveFromCart = () => {
-    setCartCounter((prev) => prev - 1);
-    setCurrentCartCounter((prev) => prev - 1);
-  };
-
   const buttonIconComputed = () => {
     if (isConstructor) return <ConstructorButtonIcon />;
 
@@ -47,7 +36,9 @@ export const ProductCard = ({ product }: TProductCardProps) => {
   };
 
   const handleClick = () => {
-    if (isConstructor) return;
+    if (!isConstructor) {
+      return navigate(pathsConfig.menu.link, { state: { product } });
+    }
 
     productModal({
       product,
@@ -73,31 +64,12 @@ export const ProductCard = ({ product }: TProductCardProps) => {
           <span className={s.wrapperCardBottomPrice}> {prices[0]} $</span>
         </span>
         <div className={s.wrapperCardBottomActions}>
-          {!cartCounter && (
-            <Button
-              className={s.wrapperCardBottomActionsButton}
-              onClick={handleClick}
-              icon={renderIcon}
-              text={buttonText}
-            />
-          )}
-          {!!cartCounter && (
-            <>
-              <Button
-                onClick={handleRemoveFromCart}
-                className={s.wrapperCardBottomActionsRemove}
-                icon={<RemoveFromCartIcon />}
-              />
-              <div className={s.wrapperCardBottomActionsCount}>
-                {cartCounter}
-              </div>
-              <Button
-                onClick={handleAddToCart}
-                className={s.wrapperCardBottomActionsAdd}
-                icon={<AddToCartIcon />}
-              />
-            </>
-          )}
+          <Button
+            className={s.wrapperCardBottomActionsButton}
+            onClick={handleClick}
+            icon={renderIcon}
+            text={buttonText}
+          />
         </div>
       </div>
     </div>

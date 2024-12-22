@@ -8,9 +8,3 @@
     position: relative;
   }
 }
-
-@include media.mobile {
-  .wrapperContent {
-    margin-top: 10px;
-  }
-}

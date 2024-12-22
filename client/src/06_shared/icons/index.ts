@@ -12,3 +12,6 @@ export { AddToCartIcon } from "./AddToCartIcon";
 export { CartActiveIcon } from "./CartActiveIcon";
 export { TopDividerIcon } from "./TopDividerIcon";
 export { ArrowTopBottomIcon } from "./ArrowTopBottomIcon";
+export { DeliveryIcon } from "./DeliveryIcon";
+export { BoxIcon } from "./BoxIcon";
+export { VatIcon } from "./VatIcon";
