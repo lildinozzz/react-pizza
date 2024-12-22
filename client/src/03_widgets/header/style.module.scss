@@ -3,6 +3,39 @@
 .wrapper {
   padding: 5px 0px 20px 0;
 
+  &Filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &SortButton {
+      position: relative;
+      width: 240px;
+      height: 55px;
+      background: var(--main-secondary);
+      border: none;
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+
+      &Icon {
+        position: absolute;
+        left: 13px;
+      }
+
+      &Title,
+      &Type {
+        @include typography.title-m-regular;
+      }
+
+      &Type {
+        color: var(--button-color-orange);
+      }
+    }
+  }
+
   &Title {
     @include typography.title-header;
   }

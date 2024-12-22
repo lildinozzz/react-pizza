@@ -1,0 +1,74 @@
+@use "@typography" as typography;
+
+.wrapper {
+  padding: 100px 32px 20px 32px;
+  height: 100vh;
+  background: var(--main-beige);
+
+  &Title {
+    margin: 20px 0;
+    @include typography.title-header;
+  }
+
+  &Content {
+    display: flex;
+    gap: 40px;
+  }
+
+  &PersonalInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 65%;
+
+    &Card {
+      background: var(--main-primary);
+      border-radius: 32px;
+    }
+  }
+
+  &PaymentInfo {
+    width: 35%;
+    background: var(--main-primary);
+    height: auto;
+    border-radius: 32px;
+
+    &Header {
+      padding: 30px 40px 0 40px;
+      @include typography.title-xl-regular;
+      font-size: 22px;
+    }
+
+    &Price {
+      padding: 10px 40px 0 40px;
+      @include typography.title-header;
+      font-size: 34px;
+      line-height: 36px;
+    }
+
+    &Counter {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 30px 40px 0 40px;
+
+      &Card {
+        display: flex;
+        align-items: center;
+
+        &Icon {
+          width: 40px;
+        }
+      }
+    }
+
+    &SubmitButton {
+      padding: 40px;
+    }
+  }
+}
+
+.divider {
+  margin-top: 25px;
+  border: 1px solid var(--outline-color-grey);
+}

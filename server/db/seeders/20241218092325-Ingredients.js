@@ -3,12 +3,20 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const ingredients = [
-      { name: 'Cheese Sauce', value: 'cheese-sauce', price: '1' },
-      { name: 'Cheese Crust', value: 'cheese-crust', price: '1' },
-      { name: 'Creamy Mozzarella', value: 'creamy-mozzarella', price: '1' },
+      { name: 'Mozzarella', value: 'mozzarella', price: '2' },
+      { name: 'Cheddar cheese', value: 'cheddar', price: '2' },
+      { name: 'Parmesan', value: 'parmesan', price: '2' },
+      { name: 'Cheese sauce', value: 'cheese_sauce', price: '1' },
       { name: 'Tomatoes', value: 'tomatoes', price: '2' },
-      { name: 'Red Onion', value: 'red-onion', price: '1' },
-      { name: 'Cheddar and Parmesan', value: 'cheddar-parmesan', price: '2' },
+      { name: 'Alfredo sauce', value: 'alfredo_sauce', price: '1' },
+      { name: 'Garlic', value: 'garlic', price: '1' },
+      { name: 'Spicy chorizo', value: 'spicy_chorizo', price: '2' },
+      { name: 'Jalapeños', value: 'jalapenos', price: '1' },
+      { name: 'Barbecue sauce', value: 'barbecue_sauce', price: '1' },
+      { name: 'Sweet pepper', value: 'sweet_pepper', price: '2' },
+      { name: 'Red onion', value: 'red_onion', price: '1' },
+      { name: 'Pickles', value: 'pickles', price: '1' },
+      { name: 'Pineapple', value: 'pineapple', price: '2' },
     ];
 
     await queryInterface.bulkInsert(

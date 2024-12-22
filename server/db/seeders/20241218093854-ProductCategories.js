@@ -4,7 +4,6 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     const productCategories = [
-      { productId: 1, categoryId: 6 },
       { productId: 1, categoryId: 2 },
       { productId: 2, categoryId: 3 },
       { productId: 3, categoryId: 2 },

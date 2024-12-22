@@ -36,7 +36,7 @@ class ProductsService {
   async getAllProductsBySearch(query: string) {
     try {
       const response = await this.client<TProduct[]>(
-        `/products/search?name=${query}`
+        `/products/search?query=${query}`
       );
       return response.data;
     } catch (error) {

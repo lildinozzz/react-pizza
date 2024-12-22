@@ -67,6 +67,8 @@ const ProductModal = ({ onClose, product }: TProductModalProps) => {
 
     if (currentTabSize === ESizeVariants.Large)
       return `35 cm, ${currentTabDough} dough, 350 g`;
+
+    return "";
   };
 
   const handleIngredientClick = (id: number) => {

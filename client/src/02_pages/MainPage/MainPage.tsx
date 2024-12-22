@@ -11,7 +11,6 @@ import {
 } from "@app/store/reducers/product-info/reducers";
 import { useAppDispatch } from "@app/store/hooks";
 export const MainPage = () => {
-  // const { isSidebarOpen } = useSelector(commonUISelectors.commonUIInfo);
   const { isMobile } = useSelector(commonUISelectors.commonUIInfo);
   const dispatch = useAppDispatch();
 
@@ -29,7 +28,6 @@ export const MainPage = () => {
         <SideFilters />
         <ProductList />
       </div>
-      {/* {isSidebarOpen && <Sidebar />} */}
     </div>
   );
 };

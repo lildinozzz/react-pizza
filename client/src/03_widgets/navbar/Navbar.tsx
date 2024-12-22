@@ -1,10 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import s from "./style.module.scss";
 import PizzaImage from "/images/navbar-pizza-image.png";
 import { commonUISelectors } from "@store/reducers/common-ui/selectors";
 import { Button, SearchInput } from "@components/index";
 import { UserIcon, CartIcon, CartActiveIcon } from "@icons/index";
-import { setIsSidebarOpen } from "@store/reducers/common-ui/dispatchers";
 import { useAuthModal } from "@features/auth/components/index";
 import { useAppDispatch, useAppSelector } from "@app/store/hooks";
 import { userInfoSelectors } from "@app/store/reducers/user-info/selectors";
@@ -24,6 +23,9 @@ export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authModal] = useAuthModal();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const showNavbarElements = location.pathname !== pathsConfig.payment.link;
 
   const handleStartAuth = () => {
     if (isAuthed) {
@@ -38,13 +40,11 @@ export const Navbar = () => {
     dispatch(logout());
   };
 
-  const onGoToSettings = () => {
-    navigate(pathsConfig.settings.link);
+  const onGoToCart = () => {
+    navigate(pathsConfig.payment.link);
 
     setIsMenuOpen(!isMenuOpen);
   };
-
-  const onGoToCart = () => {};
 
   const renderButtonText = (): string => {
     if (isMobile) return "";
@@ -76,7 +76,7 @@ export const Navbar = () => {
           <p>It doesn't get any tastier.</p>
         </div>
       </Link>
-      <SearchInput />
+      {showNavbarElements && <SearchInput />}
       <div className={s.wrapperActions}>
         <Button
           onClick={handleStartAuth}
@@ -86,16 +86,11 @@ export const Navbar = () => {
         />
         {isMenuOpen && isAuthed && (
           <div className={s.wrapperLoggedMenu}>
-            <Button onClick={onGoToSettings} text="Settings" />
             <Button onClick={onGoToCart} text="Orders" />
             <Button onClick={handleLogout} text="Logout" />
           </div>
         )}
-        <CartButton
-          text="520 ₽"
-          onClick={() => setIsSidebarOpen(true)}
-          icon={iconToRender}
-        />
+        {showNavbarElements && <CartButton text="520 ₽" icon={iconToRender} />}
       </div>
     </nav>
   );
